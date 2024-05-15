@@ -2,14 +2,15 @@ class Tank:
     def __init__(self):
         self._speed1 = 0
         self._speed2 = 0
-        self._tower = 0
+        self._tower_x = 0
+        self._tower_y = 0
         self._light = 0
         self._water = 0
         self._sound = 0
         self._sth = 0
 
     def get_values(self):
-        return [self._speed1, self._speed2, self._tower, self._light, self._water, self._sound, self._sth]
+        return [self._speed1, self._speed2, self._tower_x, self._tower_y, self._light, self._water, self._sound, self._sth]
 
     @property
     def speed1(self):
@@ -20,8 +21,12 @@ class Tank:
         return self._speed2
 
     @property
-    def tower(self):
-        return self._tower
+    def tower_x(self):
+        return self._tower_x
+
+    @property
+    def tower_y(self):
+        return self._tower_y
 
     @property
     def light(self):
@@ -53,12 +58,19 @@ class Tank:
         else:
             raise ValueError("Value of the speed should be in the [-1; 1] interval")
 
-    @tower.setter
-    def tower(self, value):
+    @tower_x.setter
+    def tower_x(self, value):
         if -1 <= value <= 1:
-            self._tower = value
+            self._tower_x = value
         else:
-            raise ValueError("Value of the tower should be in the [-1; 1] interval")
+            raise ValueError("Value of the tower x should be in the [-1; 1] interval")
+
+    @tower_y.setter
+    def tower_y(self, value):
+        if -1 <= value <= 1:
+            self._tower_y = value
+        else:
+            raise ValueError("Value of the tower y should be in the [-1; 1] interval")
 
     @light.setter
     def light(self, value):

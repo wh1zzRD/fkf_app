@@ -18,12 +18,13 @@ class Controls(QObject):
         self.gamepad = XboxController()
 
         self.gamepad.leftJoystickMove.connect(self.left_joystick_move_slot)
-        self.gamepad.rightJoystickMove.connect(self.right_joystick_move_slot)
+        # self.gamepad.rightJoystickMove.connect(self.right_joystick_move_slot)
+        self.gamepad.rightJoystickPos.connect(self.right_joystick_move_slot)
 
-        self.gamepad.buttonAClicked.connect(self.a_clicked)
         self.gamepad.buttonBClicked.connect(self.b_clicked)
         self.gamepad.buttonXClicked.connect(self.x_clicked)
-        self.gamepad.buttonYClicked.connect(self.y_clicked)
+        self.gamepad.l2_pressed.connect(self.l2_pressed)
+        self.gamepad.r2_pressed.connect(self.r2_pressed)
 
         self.window = Window()
 
@@ -35,6 +36,24 @@ class Controls(QObject):
     def emit_signal(self):
         self.second_signal.emit()
         time.sleep(1)
+
+    @QtCore.Slot(float)
+    def l2_pressed(self, r):
+        if r > 0.1:
+            self.comms.tank.sound = 1
+        else:
+            self.comms.tank.sound = 0
+
+        self.window.update_gui("button_sound", 0, 0)
+
+    @QtCore.Slot(float)
+    def r2_pressed(self, r):
+        if r > 0.1:
+            self.comms.tank.water = 1
+        else:
+            self.comms.tank.water = 0
+
+        self.window.update_gui("button_water", 0, 0)
 
     @QtCore.Slot(float, float)
     def left_joystick_move_slot(self, x, y):
@@ -50,13 +69,9 @@ class Controls(QObject):
         # send data
         # move the joystick in the app
 
-        self.comms.tank.tower = x
+        self.comms.tank.tower_x = x
+        self.comms.tank.tower_y = y
         self.window.update_gui("right_joystick", x, y)
-
-    @QtCore.Slot()
-    def a_clicked(self):
-        self.comms.tank.water = 1
-        self.window.update_gui("button_water", 0, 0)
 
     @QtCore.Slot()
     def b_clicked(self):
@@ -67,8 +82,3 @@ class Controls(QObject):
     def x_clicked(self):
         self.comms.tank.light = 1
         self.window.update_gui("button_light", 0, 0)
-
-    @QtCore.Slot()
-    def y_clicked(self):
-        self.comms.tank.sound = 1
-        self.window.update_gui("button_sound", 0, 0)

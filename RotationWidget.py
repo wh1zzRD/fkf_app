@@ -10,7 +10,7 @@ import math
 
 
 def cartesian_to_polar(x, y):
-    r = math.sqrt(x**2 + y**2)
+    r = math.sqrt(x ** 2 + y ** 2)
     theta = math.atan2(y, x)
     return r, theta
 
@@ -25,16 +25,20 @@ class RotationWidget(QWidget):
 
     def __init__(self, parent=None):
         super(RotationWidget, self).__init__(parent)
-        self.angle = 0
+        self.joystick_x = 0
+        self.joystick_y = 0
 
         self.radius = 50
         self.pointer_radius = 10
 
     def paintEvent(self, event):
         painter = QPainter(self)
+        painter.setRenderHint(QPainter.Antialiasing)
+
         bounds = QRectF(-self.radius, -self.radius, self.radius * 2,
                         self.radius * 2).translated(self._center())
         painter.drawEllipse(bounds)
+
         painter.setBrush(QColor(255, 0, 0, 127))
         painter.drawEllipse(self.pointer())
 
@@ -42,13 +46,14 @@ class RotationWidget(QWidget):
         return QPointF(self.width() / 2, self.height() / 2)
 
     def pointer(self):
-        x, y = polar_to_cartesian(self.radius, self.angle)
-        return QRectF(x, y, self.pointer_radius, self.pointer_radius).translated(self._center())
+        # Calculate the angle from the joystick position
+        _, theta = cartesian_to_polar(self.joystick_x, self.joystick_y)
+        # Use the angle and y-coordinate to find the position on the circle's edge
+        x, y = polar_to_cartesian(self.radius, theta)
+        return QRectF(-self.pointer_radius / 2, -self.pointer_radius / 2,
+                      self.pointer_radius, self.pointer_radius).translated(self._center() + QPointF(x, -y))
 
-    def set_angle(self, angle):
-        self.angle = angle
-        self.update()
-
-    def add_angle(self, angle):
-        self.angle += angle
+    def set_joystick_position(self, x, y):
+        self.joystick_x = x
+        self.joystick_y = y
         self.update()

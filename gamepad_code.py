@@ -8,6 +8,9 @@ from PySide6.QtCore import QObject, Signal
 class XboxController(QObject):
     leftJoystickMove = Signal(float, float)
     rightJoystickMove = Signal(float, float)
+    rightJoystickPos = Signal(float, float)
+    l2_pressed = Signal(float)
+    r2_pressed = Signal(float)
     buttonAClicked = Signal()
     buttonBClicked = Signal()
     buttonXClicked = Signal()
@@ -61,8 +64,10 @@ class XboxController(QObject):
                     self.RightJoystickX = event.state / XboxController.MAX_JOY_VAL  # normalize between -1 and 1
                 elif event.code == 'ABS_Z':
                     self.LeftTrigger = event.state / XboxController.MAX_TRIG_VAL  # normalize between 0 and 1
+                    self.l2_pressed.emit(self.LeftTrigger)
                 elif event.code == 'ABS_RZ':
                     self.RightTrigger = event.state / XboxController.MAX_TRIG_VAL  # normalize between 0 and 1
+                    self.r2_pressed.emit(self.RightTrigger)
                 elif event.code == 'BTN_TL':
                     self.LeftBumper = event.state
                 elif event.code == 'BTN_TR':
@@ -98,6 +103,9 @@ class XboxController(QObject):
 
                 if event.code in ['ABS_X', 'ABS_Y']:
                     self.leftJoystickMove.emit(self.LeftJoystickX, self.LeftJoystickY)
-                elif event.code in ['ABS_RX', 'ABS_RY']:
-                    if abs(self.RightJoystickX) > 0.1 or abs(self.RightJoystickY) > 0.1:
-                        self.rightJoystickMove.emit(self.RightJoystickX, self.RightJoystickY)
+                # elif event.code in ['ABS_RX', 'ABS_RY']:
+                #     if abs(self.RightJoystickX) > 0.1 or abs(self.RightJoystickY) > 0.1:
+                #         self.rightJoystickMove.emit(self.RightJoystickX, self.RightJoystickY)
+
+                if abs(self.RightJoystickX) > 0.1 or abs(self.RightJoystickY) > 0.1:
+                    self.rightJoystickPos.emit(self.RightJoystickX, self.RightJoystickY)
