@@ -1,5 +1,8 @@
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QMainWindow, QPushButton, QWidget, QHBoxLayout, QVBoxLayout
+from PySide6.QtGui import QAction
+from PySide6.QtWidgets import QMainWindow, QPushButton, QWidget, QHBoxLayout, QVBoxLayout, QMenu, QMenuBar
+
+from Communication import SerialMessenger
 from QJoystick import QJoystick
 
 from RotationWidget import RotationWidget
@@ -12,6 +15,9 @@ class Window(QMainWindow):
         self.setFixedSize(600, 400)  # Set fixed size for the window
 
         self._setup_layout()
+
+        self.selected_port = None
+        self.setup_top_menu()
 
         self.controls_functions = {
             "right_joystick": (lambda x, y: self.rotation_widget.set_joystick_position(x, y)),
@@ -72,5 +78,34 @@ class Window(QMainWindow):
 
         return button_grid
 
-    def update_gui(self, element, x, y):
+    def setup_top_menu(self):
+        self.menu_bar = QMenuBar(self)
+        self.setMenuBar(self.menu_bar)
+
+        # Create a menu
+        self.menu = QMenu("Menu", self)
+
+        # Create actions for each item in the list and add them to the menu
+        for item in SerialMessenger.all_ports():
+            action = QAction(item, self)
+            action.triggered.connect(lambda checked, text=item: self.menu_item_selected(text))
+            self.menu.addAction(action)
+
+        # Add the menu to the menu bar
+        self.menu_bar.addMenu(self.menu)
+
+        # Create a button and set the menu to it
+        self.menu_button = QAction("Dropdown Menu", self)
+        self.menu_button.triggered.connect(self.show_menu)
+        self.menu_bar.addAction(self.menu_button)
+
+    def show_menu(self):
+        self.menu.exec(self.menu_button.geometry().bottomLeft())
+
+    def menu_item_selected(self, text):
+        self.selected_port = text
+        print(f"Selected: {self.selected_port}")
+
+
+def update_gui(self, element, x, y):
         self.controls_functions[element](x, y)

@@ -28,10 +28,28 @@ class Controls(QObject):
 
         self.window = Window()
 
-        self.comms = SerialMessenger("COM3", baud_rate=9600)
+        self.current_selected_port = None
+
+        self._monitor_thread = threading.Thread(target=self._monitor_selected_item, daemon=True)
+        self._monitor_thread.start()
+
+        # self.communication_possible = False
+        if self.window.selected_port is not None:
+            self.comms = SerialMessenger(self.window.selected_port, baud_rate=9600, communication_possible=True)
+        else:
+            self.comms = SerialMessenger("", baud_rate=9600, communication_possible=False)
+        # self.comms = SerialMessenger()
 
         self.send = threading.Thread(target=self.comms.print_data, daemon=True)
         self.send.start()
+
+    def _monitor_selected_item(self):
+        while True:
+            if self.window.selected_port != self.current_selected_port:
+                self.current_selected_port = self.window.selected_port
+                self.comms = SerialMessenger(self.window.selected_port, baud_rate=9600, communication_possible=True)
+                print("changed")
+            time.sleep(0.1)
 
     def emit_signal(self):
         self.second_signal.emit()

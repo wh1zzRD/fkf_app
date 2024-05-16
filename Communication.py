@@ -8,19 +8,28 @@ from Tank import Tank
 
 
 class SerialMessenger:
-    def __init__(self, port, baud_rate=9600):
-        self.port = port
-        self.baud_rate = baud_rate
-        self.ser = serial.Serial(port, baud_rate)
+    def __init__(self, port, baud_rate=9600, communication_possible=False):
+        if communication_possible:
+            self.port = port
+            self.baud_rate = baud_rate
+            self.ser = serial.Serial(port, baud_rate)
+
+        self.communication_possible = communication_possible
 
         self.tank = Tank()
 
+    # def __init__(self):
+    #     self.tank = Tank()
+
     @staticmethod
     def all_ports():
+        all_ports = []
         ports = serial.tools.list_ports.comports()
-        print("Available Serial Ports:")
         for port in ports:
             print(port.device)
+            all_ports.append(port.device)
+
+        return all_ports
 
     def send_message(self, message):
         try:
@@ -36,5 +45,6 @@ class SerialMessenger:
 
     def print_data(self):
         while True:
-            print(self.tank.get_values())
-            time.sleep(1)
+            if self.communication_possible:
+                print(self.tank.get_values())
+                time.sleep(1)
