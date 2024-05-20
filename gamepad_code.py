@@ -2,19 +2,27 @@ from inputs import get_gamepad
 import math
 import threading
 
-from PySide6.QtCore import QObject, Signal
+from PySide6.QtCore import QObject, Signal, Slot
 
 
 class XboxController(QObject):
     leftJoystickMove = Signal(float, float)
     rightJoystickMove = Signal(float, float)
+    leftJoystickPos = Signal(float, float)
     rightJoystickPos = Signal(float, float)
     l2_pressed = Signal(float)
     r2_pressed = Signal(float)
+
+    l2_status = Signal(float)
+    r2_status = Signal(float)
+
     buttonAClicked = Signal()
     buttonBClicked = Signal()
     buttonXClicked = Signal()
     buttonYClicked = Signal()
+
+    xChanged = Signal(int)  # Signal to indicate a change in the X button toggle variable
+    bChanged = Signal(int)  # Signal to indicate a change in the B button toggle variable
 
     MAX_TRIG_VAL = math.pow(2, 8)
     MAX_JOY_VAL = math.pow(2, 15)
@@ -50,6 +58,32 @@ class XboxController(QObject):
         self.prev_left_x = 0
         self.prev_left_y = 0
 
+        # Initialize the toggle variables
+        self.toggle_variable_x = 0
+        self.toggle_variable_b = 0
+
+        # Connect the signals to the toggle handlers
+        self.buttonXClicked.connect(self.toggle_variable_x_handler)
+        self.buttonBClicked.connect(self.toggle_variable_b_handler)
+
+    @Slot()
+    def toggle_variable_x_handler(self):
+        # Toggle the X variable between 0 and 1 and emit signal if it changes
+        new_value = 1 - self.toggle_variable_x
+        if new_value != self.toggle_variable_x:
+            self.toggle_variable_x = new_value
+            self.xChanged.emit(self.toggle_variable_x)
+            print(f"Toggle variable X is now: {self.toggle_variable_x}")
+
+    @Slot()
+    def toggle_variable_b_handler(self):
+        # Toggle the B variable between 0 and 1 and emit signal if it changes
+        new_value = 1 - self.toggle_variable_b
+        if new_value != self.toggle_variable_b:
+            self.toggle_variable_b = new_value
+            self.bChanged.emit(self.toggle_variable_b)
+            print(f"Toggle variable B is now: {self.toggle_variable_b}")
+
     def _monitor_controller(self):
         while True:
             events = get_gamepad()
@@ -80,10 +114,12 @@ class XboxController(QObject):
                     self.buttonYClicked.emit()
                 elif event.code == 'BTN_WEST':
                     self.X = event.state  # previously switched with Y
-                    self.buttonXClicked.emit()
+                    if self.X == 1:  # Only emit when the button is pressed down
+                        self.buttonXClicked.emit()
                 elif event.code == 'BTN_EAST':
                     self.B = event.state
-                    self.buttonBClicked.emit()
+                    if self.B == 1:  # Only emit when the button is pressed down
+                        self.buttonBClicked.emit()
                 elif event.code == 'BTN_THUMBL':
                     self.LeftThumb = event.state
                 elif event.code == 'BTN_THUMBR':
@@ -101,11 +137,7 @@ class XboxController(QObject):
                 elif event.code == 'BTN_TRIGGER_HAPPY4':
                     self.DownDPad = event.state
 
-                if event.code in ['ABS_X', 'ABS_Y']:
-                    self.leftJoystickMove.emit(self.LeftJoystickX, self.LeftJoystickY)
-                # elif event.code in ['ABS_RX', 'ABS_RY']:
-                #     if abs(self.RightJoystickX) > 0.1 or abs(self.RightJoystickY) > 0.1:
-                #         self.rightJoystickMove.emit(self.RightJoystickX, self.RightJoystickY)
-
                 if abs(self.RightJoystickX) > 0.1 or abs(self.RightJoystickY) > 0.1:
                     self.rightJoystickPos.emit(self.RightJoystickX, self.RightJoystickY)
+                if abs(self.LeftJoystickX) > 0.1 or abs(self.LeftJoystickY) > 0.1:
+                    self.leftJoystickPos.emit(self.LeftJoystickX, self.LeftJoystickY)

@@ -43,8 +43,35 @@ class SerialMessenger:
             self.ser.close()
             print("Serial port closed")
 
+    def float_to_byte(self, value):
+        # Ensure the value is within the expected range
+        if value < -1 or value > 1:
+            raise ValueError("Input value should be in the range [-1, 1]")
+        # Normalize the value to [0, 1]
+        normalized_value = (value + 1) / 2
+
+        # Scale to the range [0, 255]
+        byte_value = int(normalized_value * 255)
+
+        return byte_value
+
     def print_data(self):
         while True:
             if self.communication_possible:
-                print(self.tank.get_values())
+                tank_values = self.tank.get_values()
+                print(tank_values)
+                byte_msg = [
+                    self.float_to_byte(tank_values[0]),
+                    self.float_to_byte(tank_values[1]),
+                    self.float_to_byte(tank_values[2]),
+                    self.float_to_byte(tank_values[3]),
+                    tank_values[4],
+                    tank_values[5],
+                    tank_values[6],
+                    tank_values[7]
+                ]
+                print(byte_msg)
+                byte_data = bytes(byte_msg)
+                # Send the byte data over serial
+                self.ser.write(byte_data)
                 time.sleep(1)

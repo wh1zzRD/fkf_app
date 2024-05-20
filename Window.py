@@ -17,6 +17,9 @@ class Window(QMainWindow):
         self._setup_layout()
 
         self.selected_port = None
+
+        self.menu_bar = None
+        self.menu = None
         self.setup_top_menu()
 
         self.controls_functions = {
@@ -83,29 +86,24 @@ class Window(QMainWindow):
         self.setMenuBar(self.menu_bar)
 
         # Create a menu
-        self.menu = QMenu("Menu", self)
+        self.menu = QMenu("Ports", self)
 
         # Create actions for each item in the list and add them to the menu
-        for item in SerialMessenger.all_ports():
+        available_ports = SerialMessenger.all_ports()
+        for item in available_ports:
             action = QAction(item, self)
             action.triggered.connect(lambda checked, text=item: self.menu_item_selected(text))
             self.menu.addAction(action)
 
+        if len(available_ports) == 1:
+            self.selected_port = available_ports[0]
+
         # Add the menu to the menu bar
         self.menu_bar.addMenu(self.menu)
-
-        # Create a button and set the menu to it
-        self.menu_button = QAction("Dropdown Menu", self)
-        self.menu_button.triggered.connect(self.show_menu)
-        self.menu_bar.addAction(self.menu_button)
-
-    def show_menu(self):
-        self.menu.exec(self.menu_button.geometry().bottomLeft())
 
     def menu_item_selected(self, text):
         self.selected_port = text
         print(f"Selected: {self.selected_port}")
 
-
-def update_gui(self, element, x, y):
+    def update_gui(self, element, x, y):
         self.controls_functions[element](x, y)

@@ -17,21 +17,18 @@ class Controls(QObject):
 
         self.gamepad = XboxController()
 
-        self.gamepad.leftJoystickMove.connect(self.left_joystick_move_slot)
+        self.gamepad.leftJoystickPos.connect(self.left_joystick_move_slot)
         # self.gamepad.rightJoystickMove.connect(self.right_joystick_move_slot)
         self.gamepad.rightJoystickPos.connect(self.right_joystick_move_slot)
 
-        self.gamepad.buttonBClicked.connect(self.b_clicked)
-        self.gamepad.buttonXClicked.connect(self.x_clicked)
+        self.gamepad.bChanged.connect(self.b_clicked)
+        self.gamepad.xChanged.connect(self.x_clicked)
         self.gamepad.l2_pressed.connect(self.l2_pressed)
         self.gamepad.r2_pressed.connect(self.r2_pressed)
 
         self.window = Window()
 
         self.current_selected_port = None
-
-        self._monitor_thread = threading.Thread(target=self._monitor_selected_item, daemon=True)
-        self._monitor_thread.start()
 
         # self.communication_possible = False
         if self.window.selected_port is not None:
@@ -91,12 +88,12 @@ class Controls(QObject):
         self.comms.tank.tower_y = y
         self.window.update_gui("right_joystick", x, y)
 
-    @QtCore.Slot()
-    def b_clicked(self):
-        self.comms.tank.sth = 1
+    @QtCore.Slot(int)
+    def b_clicked(self, val):
+        self.comms.tank.sth = val
         self.window.update_gui("button_sth", 0, 0)
 
-    @QtCore.Slot()
-    def x_clicked(self):
-        self.comms.tank.light = 1
+    @QtCore.Slot(int)
+    def x_clicked(self, val):
+        self.comms.tank.light =val
         self.window.update_gui("button_light", 0, 0)
