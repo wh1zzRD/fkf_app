@@ -10,7 +10,16 @@ class Tank:
         self._sth = 0
 
     def get_values(self):
-        return [self._speed1, self._speed2, self._tower_x, self._tower_y, self._light, self._water, self._sound, self._sth]
+        return [
+            self._speed1,
+            self._speed2,
+            self._tower_x,
+            self._tower_y,
+            self._light,
+            self._water,
+            self._sound,
+            self._sth
+        ]
 
     @property
     def speed1(self):

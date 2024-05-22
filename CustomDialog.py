@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout, QLabel, QComboBox, QPushButton
+from PySide6.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout, QLabel, QComboBox
 
 
 class CustomDialog(QDialog):
@@ -15,9 +15,9 @@ class CustomDialog(QDialog):
         self.comboBox.addItems(options)
         self.layout.addWidget(self.comboBox)
 
-        QBtn = QDialogButtonBox.Ok | QDialogButtonBox.Cancel
+        buttons = QDialogButtonBox.Ok | QDialogButtonBox.Cancel
 
-        self.buttonBox = QDialogButtonBox(QBtn)
+        self.buttonBox = QDialogButtonBox(buttons)
         self.buttonBox.accepted.connect(self.accept)
         self.buttonBox.rejected.connect(self.reject)
 
@@ -25,6 +25,3 @@ class CustomDialog(QDialog):
 
     def get_selected_option(self):
         return self.comboBox.currentText()
-
-
-

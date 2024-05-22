@@ -1,15 +1,13 @@
 import threading
-import time
 
 import inputs
 from PySide6 import QtCore
 from PySide6.QtCore import Signal, QObject
-from PySide6.QtWidgets import QApplication, QMessageBox
+from PySide6.QtWidgets import QMessageBox
 
 from Communication import SerialMessenger
 from Window import Window
 from gamepad_code import XboxController
-from inputs import UnpluggedError
 
 
 class Controls(QObject):
@@ -88,5 +86,5 @@ class Controls(QObject):
 
     @QtCore.Slot(int)
     def x_clicked(self, val):
-        self.comms.tank.light =val
+        self.comms.tank.light = val
         self.window.update_gui("button_light", 0, 0)

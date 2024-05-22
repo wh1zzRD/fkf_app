@@ -1,7 +1,5 @@
 from PySide6.QtGui import *
 from PySide6.QtCore import *
-import sys
-from enum import Enum
 
 from PySide6.QtWidgets import QWidget
 from PySide6.QtGui import QColor

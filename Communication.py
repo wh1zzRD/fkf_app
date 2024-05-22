@@ -1,10 +1,21 @@
-import threading
 import time
 
 import serial
 import serial.tools.list_ports
 
 from Tank import Tank
+
+
+def float_to_byte(value):
+    # Ensure the value is within the expected range
+    if value < -1 or value > 1:
+        raise ValueError("Input value should be in the range [-1, 1]")
+    # Normalize the value to [0, 1]
+    normalized_value = (value + 1) / 2
+
+    # Scale to the range [0, 255]
+    byte_value = int(normalized_value * 255)
+    return byte_value
 
 
 class SerialMessenger:
@@ -31,28 +42,16 @@ class SerialMessenger:
         if self.ser.is_open:
             self.ser.close()
 
-    def float_to_byte(self, value):
-        # Ensure the value is within the expected range
-        if value < -1 or value > 1:
-            raise ValueError("Input value should be in the range [-1, 1]")
-        # Normalize the value to [0, 1]
-        normalized_value = (value + 1) / 2
-
-        # Scale to the range [0, 255]
-        byte_value = int(normalized_value * 255)
-
-        return byte_value
-
     def print_data(self):
         while True:
             if self.communication_possible:
                 tank_values = self.tank.get_values()
                 print(tank_values)
                 byte_msg = [
-                    self.float_to_byte(tank_values[0]),
-                    self.float_to_byte(tank_values[1]),
-                    self.float_to_byte(tank_values[2]),
-                    self.float_to_byte(tank_values[3]),
+                    float_to_byte(tank_values[0]),
+                    float_to_byte(tank_values[1]),
+                    float_to_byte(tank_values[2]),
+                    float_to_byte(tank_values[3]),
                     tank_values[4],
                     tank_values[5],
                     tank_values[6],

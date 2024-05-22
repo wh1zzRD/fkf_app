@@ -29,7 +29,7 @@ class Window(QMainWindow):
 
         self.controls_functions = {
             "right_joystick": (lambda x, y: self.rotation_widget.set_joystick_position(x, y)),
-            "left_joystick": (lambda x, y: self.joystick.setJoystickPosition(x, y)),
+            "left_joystick": (lambda x, y: self.joystick.set_joystick_position(x, y)),
             "button_water": (lambda _, __: self.button_water.animateClick()),
             "button_light": (lambda _, __: self.button_light.animateClick()),
             "button_sound": (lambda _, __: self.button_sound.animateClick()),
