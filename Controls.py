@@ -1,4 +1,6 @@
+import json
 import threading
+from datetime import datetime, timedelta
 
 import inputs
 from PySide6 import QtCore
@@ -17,14 +19,17 @@ class Controls(QObject):
         super().__init__()
 
         self.window = Window()
-        if not self.window.is_port_selected:
+
+        port = self.check_previous_ports() or self.window.handle_port_selection_dialog()
+        if not port:
             exit()
 
-        if len(inputs.devices.gamepads) == 0:
+        self.save_ports_to_json(port)
+
+        if not inputs.devices.gamepads:
             self.no_gamepad()
 
-        self.current_selected_port = None
-        self.comms = SerialMessenger(self.window.selected_port, baud_rate=9600, communication_possible=True)
+        self.comms = SerialMessenger(port, baud_rate=9600, communication_possible=True)
 
         self.gamepad = XboxController()
 
@@ -48,6 +53,31 @@ class Controls(QObject):
             defaultButton=QMessageBox.Ok,
         )
         exit()
+
+    @classmethod
+    def load_ports_from_json(cls):
+        try:
+            with open("ports.json", "r") as f:
+                data = json.load(f)
+            return data
+        except FileNotFoundError:
+            return {}
+
+    @classmethod
+    def save_ports_to_json(cls, port):
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        with open("ports.json", "w") as f:
+            json.dump({"port": port, "timestamp": timestamp}, f)
+
+    def check_previous_ports(self):
+        ports_data = self.load_ports_from_json()
+
+        if "timestamp" in ports_data and "port" in ports_data:
+            timestamp = datetime.strptime(ports_data["timestamp"], "%Y-%m-%d %H:%M:%S")
+            if datetime.now() - timestamp < timedelta(minutes=5) and ports_data["port"] in SerialMessenger.all_ports():
+                previous_port = ports_data["port"]
+                return previous_port
 
     @QtCore.Slot(float)
     def l2_pressed(self, r):
