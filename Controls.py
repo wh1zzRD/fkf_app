@@ -1,12 +1,15 @@
 import threading
 import time
 
+import inputs
 from PySide6 import QtCore
 from PySide6.QtCore import Signal, QObject
+from PySide6.QtWidgets import QApplication, QMessageBox
 
 from Communication import SerialMessenger
 from Window import Window
 from gamepad_code import XboxController
+from inputs import UnpluggedError
 
 
 class Controls(QObject):
@@ -15,10 +18,19 @@ class Controls(QObject):
     def __init__(self):
         super().__init__()
 
+        self.window = Window()
+        if not self.window.is_port_selected:
+            exit()
+
+        if len(inputs.devices.gamepads) == 0:
+            self.no_gamepad()
+
+        self.current_selected_port = None
+        self.comms = SerialMessenger(self.window.selected_port, baud_rate=9600, communication_possible=True)
+
         self.gamepad = XboxController()
 
         self.gamepad.leftJoystickPos.connect(self.left_joystick_move_slot)
-        # self.gamepad.rightJoystickMove.connect(self.right_joystick_move_slot)
         self.gamepad.rightJoystickPos.connect(self.right_joystick_move_slot)
 
         self.gamepad.bChanged.connect(self.b_clicked)
@@ -26,31 +38,18 @@ class Controls(QObject):
         self.gamepad.l2_pressed.connect(self.l2_pressed)
         self.gamepad.r2_pressed.connect(self.r2_pressed)
 
-        self.window = Window()
-
-        self.current_selected_port = None
-
-        # self.communication_possible = False
-        if self.window.selected_port is not None:
-            self.comms = SerialMessenger(self.window.selected_port, baud_rate=9600, communication_possible=True)
-        else:
-            self.comms = SerialMessenger("", baud_rate=9600, communication_possible=False)
-        # self.comms = SerialMessenger()
-
         self.send = threading.Thread(target=self.comms.print_data, daemon=True)
         self.send.start()
 
-    def _monitor_selected_item(self):
-        while True:
-            if self.window.selected_port != self.current_selected_port:
-                self.current_selected_port = self.window.selected_port
-                self.comms = SerialMessenger(self.window.selected_port, baud_rate=9600, communication_possible=True)
-                print("changed")
-            time.sleep(0.1)
-
-    def emit_signal(self):
-        self.second_signal.emit()
-        time.sleep(1)
+    def no_gamepad(self):
+        QMessageBox.critical(
+            self.window,
+            "No Gamepad Connected",
+            "You did not connect any Gamepad",
+            buttons=QMessageBox.Ok,
+            defaultButton=QMessageBox.Ok,
+        )
+        exit()
 
     @QtCore.Slot(float)
     def l2_pressed(self, r):
@@ -72,18 +71,12 @@ class Controls(QObject):
 
     @QtCore.Slot(float, float)
     def left_joystick_move_slot(self, x, y):
-        # send data
-        # move the joystick in the app
-
         self.comms.tank.speed1 = x
         self.comms.tank.speed2 = y
         self.window.update_gui("left_joystick", x, y)
 
     @QtCore.Slot(float, float)
     def right_joystick_move_slot(self, x, y):
-        # send data
-        # move the joystick in the app
-
         self.comms.tank.tower_x = x
         self.comms.tank.tower_y = y
         self.window.update_gui("right_joystick", x, y)

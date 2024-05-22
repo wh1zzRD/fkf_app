@@ -1,26 +1,31 @@
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QAction
-from PySide6.QtWidgets import QMainWindow, QPushButton, QWidget, QHBoxLayout, QVBoxLayout, QMenu, QMenuBar
+from PySide6.QtWidgets import QMainWindow, QPushButton, QWidget, QHBoxLayout, QVBoxLayout, QMenu, QMenuBar, QDialog, \
+    QDialogButtonBox, QMessageBox
 
 from Communication import SerialMessenger
+from CustomDialog import CustomDialog
 from QJoystick import QJoystick
-
 from RotationWidget import RotationWidget
 
 
 class Window(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Joystick example")
+        self.setWindowTitle("FKF App")
         self.setFixedSize(600, 400)  # Set fixed size for the window
 
         self._setup_layout()
 
         self.selected_port = None
 
-        self.menu_bar = None
-        self.menu = None
-        self.setup_top_menu()
+        # self.menu_bar = None
+        # self.menu = None
+        # self.setup_top_menu()
+
+        self.is_port_selected = False
+
+        self.handle_port_selection_dialog()
 
         self.controls_functions = {
             "right_joystick": (lambda x, y: self.rotation_widget.set_joystick_position(x, y)),
@@ -30,6 +35,35 @@ class Window(QMainWindow):
             "button_sound": (lambda _, __: self.button_sound.animateClick()),
             "button_sth": (lambda _, __: self.button_sth.animateClick()),
         }
+
+    def handle_port_selection_dialog(self):
+
+        def accepted_slot():
+            if dlg.get_selected_option() != "":
+                self.is_port_selected = True
+                self.selected_port = dlg.get_selected_option()
+            else:
+                QMessageBox.critical(
+                    self,
+                    "No Port Selected",
+                    "You did not select a port",
+                    buttons=QMessageBox.Ok,
+                    defaultButton=QMessageBox.Ok,
+                )
+
+        def rejected_slot():
+            QMessageBox.critical(
+                self,
+                "No Port Selected",
+                "You did not select a port",
+                buttons=QMessageBox.Ok,
+                defaultButton=QMessageBox.Ok,
+            )
+
+        dlg = CustomDialog([""] + SerialMessenger.all_ports(), self)
+        dlg.accepted.connect(accepted_slot)
+        dlg.rejected.connect(rejected_slot)
+        dlg.exec()
 
     def _setup_layout(self):
         full_layout = QVBoxLayout()
@@ -80,30 +114,6 @@ class Window(QMainWindow):
             setattr(self, f"button_{button_name.lower()}", button)
 
         return button_grid
-
-    def setup_top_menu(self):
-        self.menu_bar = QMenuBar(self)
-        self.setMenuBar(self.menu_bar)
-
-        # Create a menu
-        self.menu = QMenu("Ports", self)
-
-        # Create actions for each item in the list and add them to the menu
-        available_ports = SerialMessenger.all_ports()
-        for item in available_ports:
-            action = QAction(item, self)
-            action.triggered.connect(lambda checked, text=item: self.menu_item_selected(text))
-            self.menu.addAction(action)
-
-        if len(available_ports) == 1:
-            self.selected_port = available_ports[0]
-
-        # Add the menu to the menu bar
-        self.menu_bar.addMenu(self.menu)
-
-    def menu_item_selected(self, text):
-        self.selected_port = text
-        print(f"Selected: {self.selected_port}")
 
     def update_gui(self, element, x, y):
         self.controls_functions[element](x, y)

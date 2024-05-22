@@ -1,3 +1,4 @@
+import inputs
 from inputs import get_gamepad
 import math
 import threading
@@ -12,6 +13,8 @@ class XboxController(QObject):
     rightJoystickPos = Signal(float, float)
     l2_pressed = Signal(float)
     r2_pressed = Signal(float)
+
+    no_gamepad_connected = Signal()
 
     l2_status = Signal(float)
     r2_status = Signal(float)
@@ -73,7 +76,6 @@ class XboxController(QObject):
         if new_value != self.toggle_variable_x:
             self.toggle_variable_x = new_value
             self.xChanged.emit(self.toggle_variable_x)
-            print(f"Toggle variable X is now: {self.toggle_variable_x}")
 
     @Slot()
     def toggle_variable_b_handler(self):
@@ -82,7 +84,6 @@ class XboxController(QObject):
         if new_value != self.toggle_variable_b:
             self.toggle_variable_b = new_value
             self.bChanged.emit(self.toggle_variable_b)
-            print(f"Toggle variable B is now: {self.toggle_variable_b}")
 
     def _monitor_controller(self):
         while True:

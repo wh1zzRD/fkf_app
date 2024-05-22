@@ -18,30 +18,18 @@ class SerialMessenger:
 
         self.tank = Tank()
 
-    # def __init__(self):
-    #     self.tank = Tank()
-
     @staticmethod
     def all_ports():
         all_ports = []
         ports = serial.tools.list_ports.comports()
         for port in ports:
-            print(port.device)
             all_ports.append(port.device)
 
         return all_ports
 
-    def send_message(self, message):
-        try:
-            self.ser.write(message.encode())
-            print("Message sent:", message)
-        except serial.SerialException as e:
-            print("Serial communication error:", e)
-
     def close_serial(self):
         if self.ser.is_open:
             self.ser.close()
-            print("Serial port closed")
 
     def float_to_byte(self, value):
         # Ensure the value is within the expected range
