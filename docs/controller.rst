@@ -1,0 +1,29 @@
+controller package
+==============
+
+Submodules
+----------
+
+controller.controls module
+--------------------
+
+.. automodule:: controller.controls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+controller.gamepad module
+--------------------
+
+.. automodule:: controller.gamepad
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: controller
+   :members:
+   :undoc-members:
+   :show-inheritance:
