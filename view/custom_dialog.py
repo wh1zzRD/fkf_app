@@ -19,17 +19,17 @@ class CustomDialog(QDialog):
         self.label = QLabel("Choose an option:", self)
         self.layout.addWidget(self.label)
 
-        self.comboBox = QComboBox(self)
-        self.comboBox.addItems(options)
-        self.layout.addWidget(self.comboBox)
+        self.combo_box = QComboBox(self)
+        self.combo_box.addItems(options)
+        self.layout.addWidget(self.combo_box)
 
         buttons = QDialogButtonBox.Ok | QDialogButtonBox.Cancel
 
-        self.buttonBox = QDialogButtonBox(buttons)
-        self.buttonBox.accepted.connect(self.accept)
-        self.buttonBox.rejected.connect(self.reject)
+        self.button_box = QDialogButtonBox(buttons)
+        self.button_box.accepted.connect(self.accept)
+        self.button_box.rejected.connect(self.reject)
 
-        self.layout.addWidget(self.buttonBox)
+        self.layout.addWidget(self.button_box)
 
     def get_selected_option(self):
-        return self.comboBox.currentText()
+        return self.combo_box.currentText()

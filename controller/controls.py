@@ -1,4 +1,5 @@
 import json
+import sys
 import threading
 from datetime import datetime, timedelta
 
@@ -6,9 +7,9 @@ import inputs
 from PySide6 import QtCore
 from PySide6.QtCore import Signal, QObject
 
-from model.Communication import SerialMessenger
-from view.Window import Window
-from gamepad_code import XboxController
+from model.communication import SerialMessenger
+from view.window import Window
+from .gamepad_code import XboxController
 
 
 class Controls(QObject):
@@ -21,13 +22,13 @@ class Controls(QObject):
 
         port = self.check_previous_ports() or self.window.handle_port_selection_dialog()
         if not port:
-            exit()
+            sys.exit()
 
         self.save_ports_to_json(port)
 
         if not inputs.devices.gamepads:
             self.window.critical_dialog("No Gamepad Connected", "You did not connect any Gamepad")
-            exit()
+            sys.exit()
 
         self.comms = SerialMessenger(port, baud_rate=9600)
 
@@ -47,7 +48,7 @@ class Controls(QObject):
     @classmethod
     def load_ports_from_json(cls):
         try:
-            with open("../ports.json", "r") as f:
+            with open("../ports.json", "r", encoding="utf-8") as f:
                 data = json.load(f)
             return data
         except FileNotFoundError:
@@ -57,7 +58,7 @@ class Controls(QObject):
     def save_ports_to_json(cls, port):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        with open("../ports.json", "w") as f:
+        with open("../ports.json", "w", encoding="utf-8") as f:
             json.dump({"port": port, "timestamp": timestamp}, f)
 
     def check_previous_ports(self):
@@ -68,6 +69,8 @@ class Controls(QObject):
             if datetime.now() - timestamp < timedelta(minutes=5) and ports_data["port"] in SerialMessenger.all_ports():
                 previous_port = ports_data["port"]
                 return previous_port
+
+        return ""
 
     @QtCore.Slot(float)
     def l2_pressed(self, r):

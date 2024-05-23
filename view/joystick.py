@@ -1,5 +1,5 @@
-from PySide6.QtGui import *
-from PySide6.QtCore import *
+from PySide6.QtGui import QPainter
+from PySide6.QtCore import QPointF, QRectF, QLineF
 
 from PySide6.QtWidgets import QWidget
 from PySide6.QtGui import QColor
@@ -7,9 +7,9 @@ from PySide6.QtGui import QColor
 
 class QJoystick(QWidget):
     def __init__(self, parent=None):
-        super(QJoystick, self).__init__(parent)
+        super().__init__(parent)
         self.setMinimumSize(100, 100)
-        self.grabCenter = False
+        self.grab_center = False
         self.radius = 50
         self.handle_radius = 20
 
@@ -18,7 +18,7 @@ class QJoystick(QWidget):
 
         self.handle_coords = QPointF(0, 0)
 
-    def paintEvent(self, event):
+    def paintEvent(self, event):  # pylint: disable=unused-argument
         painter = QPainter(self)
         bounds = QRectF(-self.radius, -self.radius, self.radius * 2,
                         self.radius * 2).translated(self._center())

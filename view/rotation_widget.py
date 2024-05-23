@@ -1,10 +1,9 @@
-from PySide6.QtGui import *
-from PySide6.QtCore import *
+import math
 
+from PySide6.QtGui import QPainter
+from PySide6.QtCore import QRectF, QPointF
 from PySide6.QtWidgets import QWidget
 from PySide6.QtGui import QColor
-
-import math
 
 
 def cartesian_to_polar(x, y):
@@ -22,14 +21,14 @@ def polar_to_cartesian(r, theta):
 class RotationWidget(QWidget):
 
     def __init__(self, parent=None):
-        super(RotationWidget, self).__init__(parent)
+        super().__init__(parent)
         self.joystick_x = 0
         self.joystick_y = 0
 
         self.radius = 50
         self.pointer_radius = 10
 
-    def paintEvent(self, event):
+    def paintEvent(self, event):  # pylint: disable=unused-argument
         painter = QPainter(self)
         painter.setRenderHint(QPainter.Antialiasing)
 

@@ -83,28 +83,28 @@ class Tank:
 
     @light.setter
     def light(self, value):
-        if value == 0 or value == 1:
+        if value in (0, 1):
             self._light = value
         else:
             raise ValueError("Value should be 0 or 1")
 
     @water.setter
     def water(self, value):
-        if value == 0 or value == 1:
+        if value in (0, 1):
             self._water = value
         else:
             raise ValueError("Value should be 0 or 1")
 
     @sound.setter
     def sound(self, value):
-        if value == 0 or value == 1:
+        if value in (0, 1):
             self._sound = value
         else:
             raise ValueError("Value should be 0 or 1")
 
     @sth.setter
     def sth(self, value):
-        if value == 0 or value == 1:
+        if value in (0, 1):
             self._sth = value
         else:
             raise ValueError("Value should be 0 or 1")

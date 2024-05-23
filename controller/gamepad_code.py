@@ -1,22 +1,16 @@
-from inputs import get_gamepad
 import math
 import threading
+
+from inputs import get_gamepad
 
 from PySide6.QtCore import QObject, Signal, Slot
 
 
 class XboxController(QObject):
-    leftJoystickMove = Signal(float, float)
-    rightJoystickMove = Signal(float, float)
     leftJoystickPos = Signal(float, float)
     rightJoystickPos = Signal(float, float)
     l2_pressed = Signal(float)
     r2_pressed = Signal(float)
-
-    no_gamepad_connected = Signal()
-
-    l2_status = Signal(float)
-    r2_status = Signal(float)
 
     buttonAClicked = Signal()
     buttonBClicked = Signal()
@@ -32,26 +26,26 @@ class XboxController(QObject):
     def __init__(self):
         super().__init__()
 
-        self.LeftJoystickY = 0
-        self.LeftJoystickX = 0
-        self.RightJoystickY = 0
-        self.RightJoystickX = 0
-        self.LeftTrigger = 0
-        self.RightTrigger = 0
-        self.LeftBumper = 0
-        self.RightBumper = 0
-        self.A = 0
-        self.X = 0
-        self.Y = 0
-        self.B = 0
-        self.LeftThumb = 0
-        self.RightThumb = 0
-        self.Back = 0
-        self.Start = 0
-        self.LeftDPad = 0
-        self.RightDPad = 0
-        self.UpDPad = 0
-        self.DownDPad = 0
+        self.left_joystick_y = 0
+        self.left_joystick_x = 0
+        self.right_joystick_y = 0
+        self.right_joystick_x = 0
+        self.left_trigger = 0
+        self.right_trigger = 0
+        self.left_bumper = 0
+        self.right_bumper = 0
+        self.a = 0
+        self.x = 0
+        self.y = 0
+        self.b = 0
+        self.left_thumb = 0
+        self.right_thumb = 0
+        self.back = 0
+        self.start = 0
+        self.left_d_pad = 0
+        self.right_d_pad = 0
+        self.up_d_pad = 0
+        self.down_d_pad = 0
 
         self._monitor_thread = threading.Thread(target=self._monitor_controller, args=())
         self._monitor_thread.daemon = True
@@ -85,59 +79,105 @@ class XboxController(QObject):
             self.bChanged.emit(self.toggle_variable_b)
 
     def _monitor_controller(self):
+        event_handlers = {
+            'ABS_Y': self._handle_left_joystick_y,
+            'ABS_X': self._handle_left_joystick_x,
+            'ABS_RY': self._handle_right_joystick_y,
+            'ABS_RX': self._handle_right_joystick_x,
+            'ABS_Z': self._handle_left_trigger,
+            'ABS_RZ': self._handle_right_trigger,
+            'BTN_TL': self._handle_left_bumper,
+            'BTN_TR': self._handle_right_bumper,
+            'BTN_SOUTH': self._handle_button_a,
+            'BTN_NORTH': self._handle_button_y,
+            'BTN_WEST': self._handle_button_x,
+            'BTN_EAST': self._handle_button_b,
+            'BTN_THUMBL': self._handle_left_thumb,
+            'BTN_THUMBR': self._handle_right_thumb,
+            'BTN_SELECT': self._handle_back,
+            'BTN_START': self._handle_start,
+            'BTN_TRIGGER_HAPPY1': self._handle_left_d_pad,
+            'BTN_TRIGGER_HAPPY2': self._handle_right_d_pad,
+            'BTN_TRIGGER_HAPPY3': self._handle_up_d_pad,
+            'BTN_TRIGGER_HAPPY4': self._handle_down_d_pad,
+        }
+
         while True:
             events = get_gamepad()
             for event in events:
-                if event.code == 'ABS_Y':
-                    self.LeftJoystickY = event.state / XboxController.MAX_JOY_VAL  # normalize between -1 and 1
-                elif event.code == 'ABS_X':
-                    self.LeftJoystickX = event.state / XboxController.MAX_JOY_VAL  # normalize between -1 and 1
-                elif event.code == 'ABS_RY':
-                    self.RightJoystickY = event.state / XboxController.MAX_JOY_VAL  # normalize between -1 and 1
-                elif event.code == 'ABS_RX':
-                    self.RightJoystickX = event.state / XboxController.MAX_JOY_VAL  # normalize between -1 and 1
-                elif event.code == 'ABS_Z':
-                    self.LeftTrigger = event.state / XboxController.MAX_TRIG_VAL  # normalize between 0 and 1
-                    self.l2_pressed.emit(self.LeftTrigger)
-                elif event.code == 'ABS_RZ':
-                    self.RightTrigger = event.state / XboxController.MAX_TRIG_VAL  # normalize between 0 and 1
-                    self.r2_pressed.emit(self.RightTrigger)
-                elif event.code == 'BTN_TL':
-                    self.LeftBumper = event.state
-                elif event.code == 'BTN_TR':
-                    self.RightBumper = event.state
-                elif event.code == 'BTN_SOUTH':
-                    self.A = event.state
-                    self.buttonAClicked.emit()
-                elif event.code == 'BTN_NORTH':
-                    self.Y = event.state  # previously switched with X
-                    self.buttonYClicked.emit()
-                elif event.code == 'BTN_WEST':
-                    self.X = event.state  # previously switched with Y
-                    if self.X == 1:  # Only emit when the button is pressed down
-                        self.buttonXClicked.emit()
-                elif event.code == 'BTN_EAST':
-                    self.B = event.state
-                    if self.B == 1:  # Only emit when the button is pressed down
-                        self.buttonBClicked.emit()
-                elif event.code == 'BTN_THUMBL':
-                    self.LeftThumb = event.state
-                elif event.code == 'BTN_THUMBR':
-                    self.RightThumb = event.state
-                elif event.code == 'BTN_SELECT':
-                    self.Back = event.state
-                elif event.code == 'BTN_START':
-                    self.Start = event.state
-                elif event.code == 'BTN_TRIGGER_HAPPY1':
-                    self.LeftDPad = event.state
-                elif event.code == 'BTN_TRIGGER_HAPPY2':
-                    self.RightDPad = event.state
-                elif event.code == 'BTN_TRIGGER_HAPPY3':
-                    self.UpDPad = event.state
-                elif event.code == 'BTN_TRIGGER_HAPPY4':
-                    self.DownDPad = event.state
+                handler = event_handlers.get(event.code)
+                if handler:
+                    handler(event)
 
-                if abs(self.RightJoystickX) > 0.1 or abs(self.RightJoystickY) > 0.1:
-                    self.rightJoystickPos.emit(self.RightJoystickX, self.RightJoystickY)
-                if abs(self.LeftJoystickX) > 0.1 or abs(self.LeftJoystickY) > 0.1:
-                    self.leftJoystickPos.emit(self.LeftJoystickX, self.LeftJoystickY)
+                if abs(self.right_joystick_x) > 0.1 or abs(self.right_joystick_y) > 0.1:
+                    self.rightJoystickPos.emit(self.right_joystick_x, self.right_joystick_y)
+                if abs(self.left_joystick_x) > 0.1 or abs(self.left_joystick_y) > 0.1:
+                    self.leftJoystickPos.emit(self.left_joystick_x, self.left_joystick_y)
+
+    def _handle_left_joystick_y(self, event):
+        self.left_joystick_y = event.state / self.MAX_JOY_VAL  # normalize between -1 and 1
+
+    def _handle_left_joystick_x(self, event):
+        self.left_joystick_x = event.state / self.MAX_JOY_VAL  # normalize between -1 and 1
+
+    def _handle_right_joystick_y(self, event):
+        self.right_joystick_y = event.state / self.MAX_JOY_VAL  # normalize between -1 and 1
+
+    def _handle_right_joystick_x(self, event):
+        self.right_joystick_x = event.state / self.MAX_JOY_VAL  # normalize between -1 and 1
+
+    def _handle_left_trigger(self, event):
+        self.left_trigger = event.state / self.MAX_TRIG_VAL  # normalize between 0 and 1
+        self.l2_pressed.emit(self.left_trigger)
+
+    def _handle_right_trigger(self, event):
+        self.right_trigger = event.state / self.MAX_TRIG_VAL  # normalize between 0 and 1
+        self.r2_pressed.emit(self.right_trigger)
+
+    def _handle_left_bumper(self, event):
+        self.left_bumper = event.state
+
+    def _handle_right_bumper(self, event):
+        self.right_bumper = event.state
+
+    def _handle_button_a(self, event):
+        self.a = event.state
+        self.buttonAClicked.emit()
+
+    def _handle_button_y(self, event):
+        self.y = event.state  # previously switched with X
+        self.buttonYClicked.emit()
+
+    def _handle_button_x(self, event):
+        self.x = event.state  # previously switched with Y
+        if self.x == 1:  # Only emit when the button is pressed down
+            self.buttonXClicked.emit()
+
+    def _handle_button_b(self, event):
+        self.b = event.state
+        if self.b == 1:  # Only emit when the button is pressed down
+            self.buttonBClicked.emit()
+
+    def _handle_left_thumb(self, event):
+        self.left_thumb = event.state
+
+    def _handle_right_thumb(self, event):
+        self.right_thumb = event.state
+
+    def _handle_back(self, event):
+        self.back = event.state
+
+    def _handle_start(self, event):
+        self.start = event.state
+
+    def _handle_left_d_pad(self, event):
+        self.left_d_pad = event.state
+
+    def _handle_right_d_pad(self, event):
+        self.right_d_pad = event.state
+
+    def _handle_up_d_pad(self, event):
+        self.up_d_pad = event.state
+
+    def _handle_down_d_pad(self, event):
+        self.down_d_pad = event.state

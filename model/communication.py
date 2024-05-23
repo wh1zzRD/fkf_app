@@ -3,7 +3,7 @@ import time
 import serial
 import serial.tools.list_ports
 
-from model.Tank import Tank
+from model.tank import Tank
 
 
 def float_to_byte(value):

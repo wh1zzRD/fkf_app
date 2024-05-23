@@ -2,10 +2,10 @@ from functools import partial
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QMainWindow, QPushButton, QWidget, QHBoxLayout, QVBoxLayout, QMessageBox
 
-from model.Communication import SerialMessenger
-from view.CustomDialog import CustomDialog
-from view.QJoystick import QJoystick
-from view.RotationWidget import RotationWidget
+from model.communication import SerialMessenger
+from view.custom_dialog import CustomDialog
+from view.joystick import QJoystick
+from view.rotation_widget import RotationWidget
 
 
 class Window(QMainWindow):
@@ -16,17 +16,26 @@ class Window(QMainWindow):
         self.setWindowTitle("FKF App")
         self.setFixedSize(600, 400)
 
+        self.monitor = QWidget()
+        self.joystick = QJoystick()
+        self.rotation_widget = RotationWidget()
+
+        self.button_water = QPushButton()
+        self.button_light = QPushButton()
+        self.button_sound = QPushButton()
+        self.button_sth = QPushButton()
+
         self._setup_layout()
 
         self.selected_port = None
 
         self.controls_functions = {
-            "right_joystick": (lambda x, y: self.rotation_widget.set_joystick_position(x, y)),
-            "left_joystick": (lambda x, y: self.joystick.set_joystick_position(x, y)),
-            "button_water": (lambda _, __: self.button_water.animateClick()),
-            "button_light": (lambda _, __: self.button_light.animateClick()),
-            "button_sound": (lambda _, __: self.button_sound.animateClick()),
-            "button_sth": (lambda _, __: self.button_sth.animateClick()),
+            "right_joystick": self.rotation_widget.set_joystick_position,
+            "left_joystick": self.joystick.set_joystick_position,
+            "button_water": self.button_water.animateClick,
+            "button_light": self.button_light.animateClick,
+            "button_sound": self.button_sound.animateClick,
+            "button_sth": self.button_sth.animateClick,
         }
 
     def handle_port_selection_dialog(self):
@@ -73,7 +82,6 @@ class Window(QMainWindow):
         monitor_layout = QVBoxLayout()
         monitor_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.monitor = QWidget()
         self.monitor.setFixedSize(300, 200)  # Set size of rectangular widget
         self.monitor.setStyleSheet("background-color: gray; border: 1px solid black;")
 
@@ -83,9 +91,6 @@ class Window(QMainWindow):
 
     def _setup_controls_layout(self):
         controls_layout = QHBoxLayout()
-
-        self.joystick = QJoystick()
-        self.rotation_widget = RotationWidget()
 
         controls_layout.addWidget(self.joystick)
         controls_layout.addWidget(self.rotation_widget)
@@ -110,4 +115,7 @@ class Window(QMainWindow):
         return button_grid
 
     def update_gui(self, element, x, y):
-        self.controls_functions[element](x, y)
+        if element in ("left_joystick", "right_joystick"):
+            self.controls_functions[element](x, y)
+        else:
+            self.controls_functions[element]()
