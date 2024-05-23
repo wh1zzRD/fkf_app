@@ -14,7 +14,7 @@ class Window(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("FKF App")
-        self.setFixedSize(600, 400)  # Set fixed size for the window
+        self.setFixedSize(600, 400)
 
         self._setup_layout()
 
@@ -40,27 +40,24 @@ class Window(QMainWindow):
         self.handle_port_selection_dialog()
         return self.selected_port
 
+    def critical_dialog(self, label, text):
+        QMessageBox.critical(
+            self,
+            label,
+            text,
+            buttons=QMessageBox.Ok,
+            defaultButton=QMessageBox.Ok,
+        )
+
     def accepted_slot(self, dlg):
         selected_option = dlg.get_selected_option()
         if selected_option:
             self.selected_port = selected_option
         else:
-            QMessageBox.critical(
-                self,
-                "No Port Selected",
-                "You did not select a port",
-                buttons=QMessageBox.Ok,
-                defaultButton=QMessageBox.Ok,
-            )
+            self.critical_dialog("No Port Selected", "You did not select a port")
 
     def rejected_slot(self):
-        QMessageBox.critical(
-            self,
-            "No Port Selected",
-            "You did not select a port",
-            buttons=QMessageBox.Ok,
-            defaultButton=QMessageBox.Ok,
-        )
+        self.critical_dialog("No Port Selected", "You did not select a port")
 
     def _setup_layout(self):
         full_layout = QVBoxLayout()

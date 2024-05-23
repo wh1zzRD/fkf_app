@@ -19,13 +19,10 @@ def float_to_byte(value):
 
 
 class SerialMessenger:
-    def __init__(self, port, baud_rate=9600, communication_possible=False):
-        if communication_possible:
-            self.port = port
-            self.baud_rate = baud_rate
-            self.ser = serial.Serial(port, baud_rate)
-
-        self.communication_possible = communication_possible
+    def __init__(self, port, baud_rate=9600):
+        self.port = port
+        self.baud_rate = baud_rate
+        self.ser = serial.Serial(port, baud_rate)
 
         self.tank = Tank()
 
@@ -44,21 +41,20 @@ class SerialMessenger:
 
     def print_data(self):
         while True:
-            if self.communication_possible:
-                tank_values = self.tank.get_values()
-                print(tank_values)
-                byte_msg = [
-                    float_to_byte(tank_values[0]),
-                    float_to_byte(tank_values[1]),
-                    float_to_byte(tank_values[2]),
-                    float_to_byte(tank_values[3]),
-                    tank_values[4],
-                    tank_values[5],
-                    tank_values[6],
-                    tank_values[7]
-                ]
-                print(byte_msg)
-                byte_data = bytes(byte_msg)
-                # Send the byte data over serial
-                self.ser.write(byte_data)
-                time.sleep(1)
+            tank_values = self.tank.get_values()
+            print(tank_values)
+            byte_msg = [
+                float_to_byte(tank_values[0]),
+                float_to_byte(tank_values[1]),
+                float_to_byte(tank_values[2]),
+                float_to_byte(tank_values[3]),
+                tank_values[4],
+                tank_values[5],
+                tank_values[6],
+                tank_values[7]
+            ]
+            print(byte_msg)
+            byte_data = bytes(byte_msg)
+            # Send the byte data over serial
+            self.ser.write(byte_data)
+            time.sleep(1)

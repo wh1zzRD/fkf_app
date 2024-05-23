@@ -5,7 +5,6 @@ from datetime import datetime, timedelta
 import inputs
 from PySide6 import QtCore
 from PySide6.QtCore import Signal, QObject
-from PySide6.QtWidgets import QMessageBox
 
 from Communication import SerialMessenger
 from Window import Window
@@ -27,9 +26,10 @@ class Controls(QObject):
         self.save_ports_to_json(port)
 
         if not inputs.devices.gamepads:
-            self.no_gamepad()
+            self.window.critical_dialog("No Gamepad Connected", "You did not connect any Gamepad")
+            exit()
 
-        self.comms = SerialMessenger(port, baud_rate=9600, communication_possible=True)
+        self.comms = SerialMessenger(port, baud_rate=9600)
 
         self.gamepad = XboxController()
 
@@ -43,16 +43,6 @@ class Controls(QObject):
 
         self.send = threading.Thread(target=self.comms.print_data, daemon=True)
         self.send.start()
-
-    def no_gamepad(self):
-        QMessageBox.critical(
-            self.window,
-            "No Gamepad Connected",
-            "You did not connect any Gamepad",
-            buttons=QMessageBox.Ok,
-            defaultButton=QMessageBox.Ok,
-        )
-        exit()
 
     @classmethod
     def load_ports_from_json(cls):
