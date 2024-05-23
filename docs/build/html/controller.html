@@ -76,6 +76,9 @@
 <li class="toctree-l1" x-data="{ expanded: $el.classList.contains('current') ? true : false }"><a :class="{ 'expanded' : expanded }" @click="expanded = !expanded" class="reference internal expandable" href="view.html">View Package<button @click.prevent.stop="expanded = !expanded" type="button"><span class="sr-only"></span><svg fill="currentColor" height="18px" stroke="none" viewbox="0 0 24 24" width="18px" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></button></a><ul class="simple" x-show="expanded">
 </ul>
 </li>
+<li class="toctree-l1" x-data="{ expanded: $el.classList.contains('current') ? true : false }"><a :class="{ 'expanded' : expanded }" @click="expanded = !expanded" class="reference internal expandable" href="model.html">Model Package<button @click.prevent.stop="expanded = !expanded" type="button"><span class="sr-only"></span><svg fill="currentColor" height="18px" stroke="none" viewbox="0 0 24 24" width="18px" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></button></a><ul class="simple" x-show="expanded">
+</ul>
+</li>
 </ul>
 </nav>
 </div>
@@ -100,10 +103,10 @@
 </nav>
 <div id="content" role="main">
 <section id="controller-package">
-<h1>Controller Package<a class="headerlink" href="#controller-package" title="Link to this heading"></a></h1>
+<h1>Controller Package<a class="headerlink" href="#controller-package" title="Link to this heading">¶</a></h1>
 
 <section id="module-controller.controls">
-<span id="controller-controls-module"></span><h2>controller.controls module<a class="headerlink" href="#module-controller.controls" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#module-controller.controls'"></a></h2>
+<span id="controller-controls-module"></span><h2>controller.controls module<a class="headerlink" href="#module-controller.controls" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#module-controller.controls'">¶</a></h2>
 <p>Module for controlling a tank system via serial communication and updating a GUI based on gamepad input.</p>
 <p>This module provides functionality for controlling a tank system through
 serial communication with an Arduino board. It interfaces with a gamepad
@@ -117,38 +120,38 @@ controls.window.show()</p>
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="controller.controls.Controls">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.controls.</span></span><span class="sig-name descname"><span class="pre">Controls</span></span><a class="reference internal" href="_modules/controller/controls.html#Controls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls'"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.controls.</span></span><span class="sig-name descname"><span class="pre">Controls</span></span><a class="reference internal" href="_modules/controller/controls.html#Controls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls'">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QObject</span></code></p>
 <p>Handles the control flow between the gamepad input and the application window.</p>
 <p>This class manages the connection between a gamepad and the application, including
 serial communication setup, signal-slot connections, and user interface interactions.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.controls.Controls.window">
-<span class="sig-name descname"><span class="pre">window</span></span><a class="headerlink" href="#controller.controls.Controls.window" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.window'"></a></dt>
+<span class="sig-name descname"><span class="pre">window</span></span><a class="headerlink" href="#controller.controls.Controls.window" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.window'">¶</a></dt>
 <dd><p>The main application window.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.controls.Controls.comms">
-<span class="sig-name descname"><span class="pre">comms</span></span><a class="headerlink" href="#controller.controls.Controls.comms" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.comms'"></a></dt>
+<span class="sig-name descname"><span class="pre">comms</span></span><a class="headerlink" href="#controller.controls.Controls.comms" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.comms'">¶</a></dt>
 <dd><p>An instance of SerialMessenger for serial communication.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.controls.Controls.gamepad">
-<span class="sig-name descname"><span class="pre">gamepad</span></span><a class="headerlink" href="#controller.controls.Controls.gamepad" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.gamepad'"></a></dt>
+<span class="sig-name descname"><span class="pre">gamepad</span></span><a class="headerlink" href="#controller.controls.Controls.gamepad" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.gamepad'">¶</a></dt>
 <dd><p>An instance of XboxController for handling gamepad inputs.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.controls.Controls.send">
-<span class="sig-name descname"><span class="pre">send</span></span><a class="headerlink" href="#controller.controls.Controls.send" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.send'"></a></dt>
+<span class="sig-name descname"><span class="pre">send</span></span><a class="headerlink" href="#controller.controls.Controls.send" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.send'">¶</a></dt>
 <dd><p>A threading.Thread for handling background serial communication.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.controls.Controls.b_clicked">
-<span class="sig-name descname"><span class="pre">b_clicked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/controls.html#Controls.b_clicked"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.b_clicked" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.b_clicked'"></a></dt>
+<span class="sig-name descname"><span class="pre">b_clicked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/controls.html#Controls.b_clicked"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.b_clicked" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.b_clicked'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.controls.Controls.check_previous_ports">
-<span class="sig-name descname"><span class="pre">check_previous_ports</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/controller/controls.html#Controls.check_previous_ports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.check_previous_ports" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.check_previous_ports'"></a></dt>
+<span class="sig-name descname"><span class="pre">check_previous_ports</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/controller/controls.html#Controls.check_previous_ports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.check_previous_ports" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.check_previous_ports'">¶</a></dt>
 <dd><p>Check if a port was previously selected within a time frame of 5 minutes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -165,15 +168,15 @@ serial communication setup, signal-slot connections, and user interface interact
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.controls.Controls.l2_pressed">
-<span class="sig-name descname"><span class="pre">l2_pressed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/controls.html#Controls.l2_pressed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.l2_pressed" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.l2_pressed'"></a></dt>
+<span class="sig-name descname"><span class="pre">l2_pressed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/controls.html#Controls.l2_pressed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.l2_pressed" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.l2_pressed'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.controls.Controls.left_joystick_move_slot">
-<span class="sig-name descname"><span class="pre">left_joystick_move_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/controls.html#Controls.left_joystick_move_slot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.left_joystick_move_slot" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.left_joystick_move_slot'"></a></dt>
+<span class="sig-name descname"><span class="pre">left_joystick_move_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/controls.html#Controls.left_joystick_move_slot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.left_joystick_move_slot" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.left_joystick_move_slot'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.controls.Controls.load_ports_from_json">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_ports_from_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/controller/controls.html#Controls.load_ports_from_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.load_ports_from_json" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.load_ports_from_json'"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_ports_from_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/controller/controls.html#Controls.load_ports_from_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.load_ports_from_json" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.load_ports_from_json'">¶</a></dt>
 <dd><p>Load previously saved port data from JSON file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -190,15 +193,15 @@ serial communication setup, signal-slot connections, and user interface interact
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.controls.Controls.r2_pressed">
-<span class="sig-name descname"><span class="pre">r2_pressed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/controls.html#Controls.r2_pressed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.r2_pressed" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.r2_pressed'"></a></dt>
+<span class="sig-name descname"><span class="pre">r2_pressed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/controls.html#Controls.r2_pressed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.r2_pressed" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.r2_pressed'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.controls.Controls.right_joystick_move_slot">
-<span class="sig-name descname"><span class="pre">right_joystick_move_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/controls.html#Controls.right_joystick_move_slot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.right_joystick_move_slot" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.right_joystick_move_slot'"></a></dt>
+<span class="sig-name descname"><span class="pre">right_joystick_move_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/controls.html#Controls.right_joystick_move_slot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.right_joystick_move_slot" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.right_joystick_move_slot'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.controls.Controls.save_ports_to_json">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_ports_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/controller/controls.html#Controls.save_ports_to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.save_ports_to_json" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.save_ports_to_json'"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_ports_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/controller/controls.html#Controls.save_ports_to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.save_ports_to_json" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.save_ports_to_json'">¶</a></dt>
 <dd><p>Save the selected port to a JSON file with timestamp.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -208,20 +211,20 @@ serial communication setup, signal-slot connections, and user interface interact
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.controls.Controls.staticMetaObject">
-<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject("Controls"</span> <span class="pre">inherits</span> <span class="pre">"QObject":</span> <span class="pre">Methods:</span>   <span class="pre">#4</span> <span class="pre">type=Slot,</span> <span class="pre">signature=l2_pressed(double),</span> <span class="pre">parameters=double</span>   <span class="pre">#5</span> <span class="pre">type=Slot,</span> <span class="pre">signature=r2_pressed(double),</span> <span class="pre">parameters=double</span>   <span class="pre">#6</span> <span class="pre">type=Slot,</span> <span class="pre">signature=left_joystick_move_slot(double,double),</span> <span class="pre">parameters=double,</span> <span class="pre">double</span>   <span class="pre">#7</span> <span class="pre">type=Slot,</span> <span class="pre">signature=right_joystick_move_slot(double,double),</span> <span class="pre">parameters=double,</span> <span class="pre">double</span>   <span class="pre">#8</span> <span class="pre">type=Slot,</span> <span class="pre">signature=b_clicked(int),</span> <span class="pre">parameters=int</span>   <span class="pre">#9</span> <span class="pre">type=Slot,</span> <span class="pre">signature=x_clicked(int),</span> <span class="pre">parameters=int</span> <span class="pre">)</span></em><a class="headerlink" href="#controller.controls.Controls.staticMetaObject" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.staticMetaObject'"></a></dt>
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject("Controls"</span> <span class="pre">inherits</span> <span class="pre">"QObject":</span> <span class="pre">Methods:</span>   <span class="pre">#4</span> <span class="pre">type=Slot,</span> <span class="pre">signature=l2_pressed(double),</span> <span class="pre">parameters=double</span>   <span class="pre">#5</span> <span class="pre">type=Slot,</span> <span class="pre">signature=r2_pressed(double),</span> <span class="pre">parameters=double</span>   <span class="pre">#6</span> <span class="pre">type=Slot,</span> <span class="pre">signature=left_joystick_move_slot(double,double),</span> <span class="pre">parameters=double,</span> <span class="pre">double</span>   <span class="pre">#7</span> <span class="pre">type=Slot,</span> <span class="pre">signature=right_joystick_move_slot(double,double),</span> <span class="pre">parameters=double,</span> <span class="pre">double</span>   <span class="pre">#8</span> <span class="pre">type=Slot,</span> <span class="pre">signature=b_clicked(int),</span> <span class="pre">parameters=int</span>   <span class="pre">#9</span> <span class="pre">type=Slot,</span> <span class="pre">signature=x_clicked(int),</span> <span class="pre">parameters=int</span> <span class="pre">)</span></em><a class="headerlink" href="#controller.controls.Controls.staticMetaObject" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.staticMetaObject'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.controls.Controls.x_clicked">
-<span class="sig-name descname"><span class="pre">x_clicked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/controls.html#Controls.x_clicked"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.x_clicked" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.x_clicked'"></a></dt>
+<span class="sig-name descname"><span class="pre">x_clicked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/controls.html#Controls.x_clicked"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.controls.Controls.x_clicked" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.controls.Controls.x_clicked'">¶</a></dt>
 <dd></dd></dl>
 </dd></dl>
 </section>
 <section id="module-controller.gamepad">
-<span id="controller-gamepad-module"></span><h2>controller.gamepad module<a class="headerlink" href="#module-controller.gamepad" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#module-controller.gamepad'"></a></h2>
+<span id="controller-gamepad-module"></span><h2>controller.gamepad module<a class="headerlink" href="#module-controller.gamepad" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#module-controller.gamepad'">¶</a></h2>
 <p>A module for interfacing with an Xbox controller and emitting signals based on input events.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.gamepad.</span></span><span class="sig-name descname"><span class="pre">XboxController</span></span><a class="reference internal" href="_modules/controller/gamepad.html#XboxController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.gamepad.XboxController" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController'"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.gamepad.</span></span><span class="sig-name descname"><span class="pre">XboxController</span></span><a class="reference internal" href="_modules/controller/gamepad.html#XboxController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.gamepad.XboxController" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController'">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QObject</span></code></p>
 <p>Handles Xbox controller inputs and emits signals for various actions.</p>
 <p>This class monitors the Xbox controller inputs and emits signals for joystick movements,
@@ -229,109 +232,109 @@ trigger presses, and button clicks.
 It also handles toggling variables for specific buttons.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController.leftJoystickPos">
-<span class="sig-name descname"><span class="pre">leftJoystickPos</span></span><a class="headerlink" href="#controller.gamepad.XboxController.leftJoystickPos" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.leftJoystickPos'"></a></dt>
+<span class="sig-name descname"><span class="pre">leftJoystickPos</span></span><a class="headerlink" href="#controller.gamepad.XboxController.leftJoystickPos" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.leftJoystickPos'">¶</a></dt>
 <dd><p>A signal emitted with two floats for the left joystick position.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController.rightJoystickPos">
-<span class="sig-name descname"><span class="pre">rightJoystickPos</span></span><a class="headerlink" href="#controller.gamepad.XboxController.rightJoystickPos" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.rightJoystickPos'"></a></dt>
+<span class="sig-name descname"><span class="pre">rightJoystickPos</span></span><a class="headerlink" href="#controller.gamepad.XboxController.rightJoystickPos" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.rightJoystickPos'">¶</a></dt>
 <dd><p>A signal emitted with two floats for the right joystick position.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController.l2_pressed">
-<span class="sig-name descname"><span class="pre">l2_pressed</span></span><a class="headerlink" href="#controller.gamepad.XboxController.l2_pressed" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.l2_pressed'"></a></dt>
+<span class="sig-name descname"><span class="pre">l2_pressed</span></span><a class="headerlink" href="#controller.gamepad.XboxController.l2_pressed" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.l2_pressed'">¶</a></dt>
 <dd><p>A signal emitted with a float for the left trigger pressure.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController.r2_pressed">
-<span class="sig-name descname"><span class="pre">r2_pressed</span></span><a class="headerlink" href="#controller.gamepad.XboxController.r2_pressed" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.r2_pressed'"></a></dt>
+<span class="sig-name descname"><span class="pre">r2_pressed</span></span><a class="headerlink" href="#controller.gamepad.XboxController.r2_pressed" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.r2_pressed'">¶</a></dt>
 <dd><p>A signal emitted with a float for the right trigger pressure.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController.buttonAClicked">
-<span class="sig-name descname"><span class="pre">buttonAClicked</span></span><a class="headerlink" href="#controller.gamepad.XboxController.buttonAClicked" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.buttonAClicked'"></a></dt>
+<span class="sig-name descname"><span class="pre">buttonAClicked</span></span><a class="headerlink" href="#controller.gamepad.XboxController.buttonAClicked" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.buttonAClicked'">¶</a></dt>
 <dd><p>A signal emitted when the A button is clicked.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController.buttonYClicked">
-<span class="sig-name descname"><span class="pre">buttonYClicked</span></span><a class="headerlink" href="#controller.gamepad.XboxController.buttonYClicked" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.buttonYClicked'"></a></dt>
+<span class="sig-name descname"><span class="pre">buttonYClicked</span></span><a class="headerlink" href="#controller.gamepad.XboxController.buttonYClicked" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.buttonYClicked'">¶</a></dt>
 <dd><p>A signal emitted when the Y button is clicked.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController.xChanged">
-<span class="sig-name descname"><span class="pre">xChanged</span></span><a class="headerlink" href="#controller.gamepad.XboxController.xChanged" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.xChanged'"></a></dt>
+<span class="sig-name descname"><span class="pre">xChanged</span></span><a class="headerlink" href="#controller.gamepad.XboxController.xChanged" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.xChanged'">¶</a></dt>
 <dd><p>A signal emitted with an integer when the X button toggles variable changes.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController.bChanged">
-<span class="sig-name descname"><span class="pre">bChanged</span></span><a class="headerlink" href="#controller.gamepad.XboxController.bChanged" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.bChanged'"></a></dt>
+<span class="sig-name descname"><span class="pre">bChanged</span></span><a class="headerlink" href="#controller.gamepad.XboxController.bChanged" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.bChanged'">¶</a></dt>
 <dd><p>A signal emitted with an integer when the B button toggles variable changes.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController.MAX_TRIG_VAL">
-<span class="sig-name descname"><span class="pre">MAX_TRIG_VAL</span></span><a class="headerlink" href="#controller.gamepad.XboxController.MAX_TRIG_VAL" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.MAX_TRIG_VAL'"></a></dt>
+<span class="sig-name descname"><span class="pre">MAX_TRIG_VAL</span></span><a class="headerlink" href="#controller.gamepad.XboxController.MAX_TRIG_VAL" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.MAX_TRIG_VAL'">¶</a></dt>
 <dd><p>The maximum value for trigger inputs.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController.MAX_JOY_VAL">
-<span class="sig-name descname"><span class="pre">MAX_JOY_VAL</span></span><a class="headerlink" href="#controller.gamepad.XboxController.MAX_JOY_VAL" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.MAX_JOY_VAL'"></a></dt>
+<span class="sig-name descname"><span class="pre">MAX_JOY_VAL</span></span><a class="headerlink" href="#controller.gamepad.XboxController.MAX_JOY_VAL" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.MAX_JOY_VAL'">¶</a></dt>
 <dd><p>The maximum value for joystick inputs.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">MAX_JOY_VAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32768.0</span></em><a class="headerlink" href="#id0" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id0'"></a></dt>
+<span class="sig-name descname"><span class="pre">MAX_JOY_VAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32768.0</span></em><a class="headerlink" href="#id0" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id0'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">MAX_TRIG_VAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">256.0</span></em><a class="headerlink" href="#id1" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id1'"></a></dt>
+<span class="sig-name descname"><span class="pre">MAX_TRIG_VAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">256.0</span></em><a class="headerlink" href="#id1" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id1'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">bChanged</span></span><a class="headerlink" href="#id2" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id2'"></a></dt>
+<span class="sig-name descname"><span class="pre">bChanged</span></span><a class="headerlink" href="#id2" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id2'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id3">
-<span class="sig-name descname"><span class="pre">buttonAClicked</span></span><a class="headerlink" href="#id3" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id3'"></a></dt>
+<span class="sig-name descname"><span class="pre">buttonAClicked</span></span><a class="headerlink" href="#id3" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id3'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id4">
-<span class="sig-name descname"><span class="pre">buttonYClicked</span></span><a class="headerlink" href="#id4" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id4'"></a></dt>
+<span class="sig-name descname"><span class="pre">buttonYClicked</span></span><a class="headerlink" href="#id4" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id4'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id5">
-<span class="sig-name descname"><span class="pre">l2_pressed</span></span><a class="headerlink" href="#id5" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id5'"></a></dt>
+<span class="sig-name descname"><span class="pre">l2_pressed</span></span><a class="headerlink" href="#id5" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id5'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id6">
-<span class="sig-name descname"><span class="pre">leftJoystickPos</span></span><a class="headerlink" href="#id6" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id6'"></a></dt>
+<span class="sig-name descname"><span class="pre">leftJoystickPos</span></span><a class="headerlink" href="#id6" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id6'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id7">
-<span class="sig-name descname"><span class="pre">r2_pressed</span></span><a class="headerlink" href="#id7" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id7'"></a></dt>
+<span class="sig-name descname"><span class="pre">r2_pressed</span></span><a class="headerlink" href="#id7" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id7'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id8">
-<span class="sig-name descname"><span class="pre">rightJoystickPos</span></span><a class="headerlink" href="#id8" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id8'"></a></dt>
+<span class="sig-name descname"><span class="pre">rightJoystickPos</span></span><a class="headerlink" href="#id8" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id8'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController.staticMetaObject">
-<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject("XboxController"</span> <span class="pre">inherits</span> <span class="pre">"QObject":</span> <span class="pre">Methods:</span>   <span class="pre">#4</span> <span class="pre">type=Signal,</span> <span class="pre">signature=leftJoystickPos(double,double),</span> <span class="pre">parameters=double,</span> <span class="pre">double</span>   <span class="pre">#5</span> <span class="pre">type=Signal,</span> <span class="pre">signature=rightJoystickPos(double,double),</span> <span class="pre">parameters=double,</span> <span class="pre">double</span>   <span class="pre">#6</span> <span class="pre">type=Signal,</span> <span class="pre">signature=l2_pressed(double),</span> <span class="pre">parameters=double</span>   <span class="pre">#7</span> <span class="pre">type=Signal,</span> <span class="pre">signature=r2_pressed(double),</span> <span class="pre">parameters=double</span>   <span class="pre">#8</span> <span class="pre">type=Signal,</span> <span class="pre">signature=buttonAClicked()</span>   <span class="pre">#9</span> <span class="pre">type=Signal,</span> <span class="pre">signature=buttonYClicked()</span>   <span class="pre">#10</span> <span class="pre">type=Signal,</span> <span class="pre">signature=xChanged(int),</span> <span class="pre">parameters=int</span>   <span class="pre">#11</span> <span class="pre">type=Signal,</span> <span class="pre">signature=bChanged(int),</span> <span class="pre">parameters=int</span> <span class="pre">)</span></em><a class="headerlink" href="#controller.gamepad.XboxController.staticMetaObject" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.staticMetaObject'"></a></dt>
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject("XboxController"</span> <span class="pre">inherits</span> <span class="pre">"QObject":</span> <span class="pre">Methods:</span>   <span class="pre">#4</span> <span class="pre">type=Signal,</span> <span class="pre">signature=leftJoystickPos(double,double),</span> <span class="pre">parameters=double,</span> <span class="pre">double</span>   <span class="pre">#5</span> <span class="pre">type=Signal,</span> <span class="pre">signature=rightJoystickPos(double,double),</span> <span class="pre">parameters=double,</span> <span class="pre">double</span>   <span class="pre">#6</span> <span class="pre">type=Signal,</span> <span class="pre">signature=l2_pressed(double),</span> <span class="pre">parameters=double</span>   <span class="pre">#7</span> <span class="pre">type=Signal,</span> <span class="pre">signature=r2_pressed(double),</span> <span class="pre">parameters=double</span>   <span class="pre">#8</span> <span class="pre">type=Signal,</span> <span class="pre">signature=buttonAClicked()</span>   <span class="pre">#9</span> <span class="pre">type=Signal,</span> <span class="pre">signature=buttonYClicked()</span>   <span class="pre">#10</span> <span class="pre">type=Signal,</span> <span class="pre">signature=xChanged(int),</span> <span class="pre">parameters=int</span>   <span class="pre">#11</span> <span class="pre">type=Signal,</span> <span class="pre">signature=bChanged(int),</span> <span class="pre">parameters=int</span> <span class="pre">)</span></em><a class="headerlink" href="#controller.gamepad.XboxController.staticMetaObject" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.staticMetaObject'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController.toggle_variable_b_handler">
-<span class="sig-name descname"><span class="pre">toggle_variable_b_handler</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/gamepad.html#XboxController.toggle_variable_b_handler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.gamepad.XboxController.toggle_variable_b_handler" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.toggle_variable_b_handler'"></a></dt>
+<span class="sig-name descname"><span class="pre">toggle_variable_b_handler</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/gamepad.html#XboxController.toggle_variable_b_handler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.gamepad.XboxController.toggle_variable_b_handler" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.toggle_variable_b_handler'">¶</a></dt>
 <dd><p>Toggles handler for button B.</p>
 <p>This method toggles the B variable between zero and one and emits a signal if it changes.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.gamepad.XboxController.toggle_variable_x_handler">
-<span class="sig-name descname"><span class="pre">toggle_variable_x_handler</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/gamepad.html#XboxController.toggle_variable_x_handler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.gamepad.XboxController.toggle_variable_x_handler" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.toggle_variable_x_handler'"></a></dt>
+<span class="sig-name descname"><span class="pre">toggle_variable_x_handler</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/gamepad.html#XboxController.toggle_variable_x_handler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.gamepad.XboxController.toggle_variable_x_handler" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#controller.gamepad.XboxController.toggle_variable_x_handler'">¶</a></dt>
 <dd><p>Toggles handler for button X.</p>
 <p>This method toggles the X variable between zero and one and emits a signal if it changes.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id9">
-<span class="sig-name descname"><span class="pre">xChanged</span></span><a class="headerlink" href="#id9" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id9'"></a></dt>
+<span class="sig-name descname"><span class="pre">xChanged</span></span><a class="headerlink" href="#id9" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id9'">¶</a></dt>
 <dd></dd></dl>
 </dd></dl>
 </section>
@@ -401,8 +404,6 @@ It also handles toggling variables for specific buttons.</p>
 </div>
 </footer>
 </div>
-<script src="_static/jquery.js?v=5d32c60e"></script>
-<script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
 <script src="_static/documentation_options.js?v=5929fcd5"></script>
 <script src="_static/doctools.js?v=888ff710"></script>
 <script src="_static/sphinx_highlight.js?v=dc90522c"></script>

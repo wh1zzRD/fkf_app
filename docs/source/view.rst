@@ -1,11 +1,11 @@
 View Package
-==================
+============
 
 .. toctree::
    :maxdepth: 4
 
 view.window module
---------------------------
+------------------
 
 .. automodule:: view.window
    :members:
@@ -13,7 +13,7 @@ view.window module
    :show-inheritance:
 
 view.joystick module
---------------------------
+--------------------
 
 .. automodule:: view.joystick
    :members:
@@ -21,7 +21,7 @@ view.joystick module
    :show-inheritance:
 
 view.rotation_widget module
---------------------------
+---------------------------
 
 .. automodule:: view.rotation_widget
    :members:
@@ -30,7 +30,7 @@ view.rotation_widget module
 
 
 view.custom_dialog module
---------------------------
+-------------------------
 
 .. automodule:: view.custom_dialog
    :members:

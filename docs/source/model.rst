@@ -1,5 +1,5 @@
 Model Package
-==================
+=============
 
 .. toctree::
    :maxdepth: 2
@@ -13,7 +13,7 @@ model.communication module
    :show-inheritance:
 
 model.tank module
---------------------------
+-----------------
 
 .. automodule:: model.tank
    :members:

@@ -13,7 +13,7 @@ controller.controls module
    :show-inheritance:
 
 controller.gamepad module
---------------------------
+-------------------------
 
 .. automodule:: controller.gamepad
    :members:

@@ -102,10 +102,10 @@
 </nav>
 <div id="content" role="main">
 <section id="model-package">
-<h1>Model Package<a class="headerlink" href="#model-package" title="Link to this heading"></a></h1>
+<h1>Model Package<a class="headerlink" href="#model-package" title="Link to this heading">¶</a></h1>
 
 <section id="module-model.communication">
-<span id="model-communication-module"></span><h2>model.communication module<a class="headerlink" href="#module-model.communication" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#module-model.communication'"></a></h2>
+<span id="model-communication-module"></span><h2>model.communication module<a class="headerlink" href="#module-model.communication" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#module-model.communication'">¶</a></h2>
 <p>A module for converting program data to the required format and communicating it via serial.</p>
 <p>Represent the part of the model in the MVC. Receives the data from
 the controller, converts it to the required byte format and sends
@@ -116,7 +116,7 @@ it to a connected microcontroller via pyserial.</p>
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="model.communication.SerialMessenger">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.communication.</span></span><span class="sig-name descname"><span class="pre">SerialMessenger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baud_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">9600</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/communication.html#SerialMessenger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.communication.SerialMessenger" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger'"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.communication.</span></span><span class="sig-name descname"><span class="pre">SerialMessenger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baud_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">9600</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/communication.html#SerialMessenger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.communication.SerialMessenger" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger'">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Communication point between program and physical tank.</p>
 <p>Used by the controller to send its data (user input)
@@ -124,27 +124,27 @@ to an antenna that later communicates it to a
 physical instance of the tank.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="model.communication.SerialMessenger.port">
-<span class="sig-name descname"><span class="pre">port</span></span><a class="headerlink" href="#model.communication.SerialMessenger.port" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.port'"></a></dt>
+<span class="sig-name descname"><span class="pre">port</span></span><a class="headerlink" href="#model.communication.SerialMessenger.port" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.port'">¶</a></dt>
 <dd><p>A string representing the serial port to which the device is connected.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="model.communication.SerialMessenger.baud_rate">
-<span class="sig-name descname"><span class="pre">baud_rate</span></span><a class="headerlink" href="#model.communication.SerialMessenger.baud_rate" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.baud_rate'"></a></dt>
+<span class="sig-name descname"><span class="pre">baud_rate</span></span><a class="headerlink" href="#model.communication.SerialMessenger.baud_rate" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.baud_rate'">¶</a></dt>
 <dd><p>An integer representing the speed of data transmission in bits per second.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="model.communication.SerialMessenger.ser">
-<span class="sig-name descname"><span class="pre">ser</span></span><a class="headerlink" href="#model.communication.SerialMessenger.ser" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.ser'"></a></dt>
+<span class="sig-name descname"><span class="pre">ser</span></span><a class="headerlink" href="#model.communication.SerialMessenger.ser" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.ser'">¶</a></dt>
 <dd><p>A serial.Serial instance representing the serial connection.</p>
 </dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="model.communication.SerialMessenger.tank">
-<span class="sig-name descname"><span class="pre">tank</span></span><a class="headerlink" href="#model.communication.SerialMessenger.tank" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.tank'"></a></dt>
+<span class="sig-name descname"><span class="pre">tank</span></span><a class="headerlink" href="#model.communication.SerialMessenger.tank" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.tank'">¶</a></dt>
 <dd><p>instance of tank class representing the values needed to be sent</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="model.communication.SerialMessenger.all_ports">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">all_ports</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/model/communication.html#SerialMessenger.all_ports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.communication.SerialMessenger.all_ports" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.all_ports'"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">all_ports</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/model/communication.html#SerialMessenger.all_ports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.communication.SerialMessenger.all_ports" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.all_ports'">¶</a></dt>
 <dd><p>Retrieves a list of all available serial ports.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -157,12 +157,12 @@ physical instance of the tank.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="model.communication.SerialMessenger.close_serial">
-<span class="sig-name descname"><span class="pre">close_serial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/model/communication.html#SerialMessenger.close_serial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.communication.SerialMessenger.close_serial" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.close_serial'"></a></dt>
+<span class="sig-name descname"><span class="pre">close_serial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/model/communication.html#SerialMessenger.close_serial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.communication.SerialMessenger.close_serial" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.close_serial'">¶</a></dt>
 <dd><p>Closes the serial connection.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="model.communication.SerialMessenger.print_data">
-<span class="sig-name descname"><span class="pre">print_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/model/communication.html#SerialMessenger.print_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.communication.SerialMessenger.print_data" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.print_data'"></a></dt>
+<span class="sig-name descname"><span class="pre">print_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/model/communication.html#SerialMessenger.print_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.communication.SerialMessenger.print_data" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.SerialMessenger.print_data'">¶</a></dt>
 <dd><p>Print tank data and send it over serial.</p>
 <p>This method retrieves tank data, converts it to the required byte format,
 and sends it over the serial connection.
@@ -171,7 +171,7 @@ It runs in a loop with a delay of 1 second.</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="model.communication.float_to_byte">
-<span class="sig-prename descclassname"><span class="pre">model.communication.</span></span><span class="sig-name descname"><span class="pre">float_to_byte</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/model/communication.html#float_to_byte"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.communication.float_to_byte" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.float_to_byte'"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">model.communication.</span></span><span class="sig-name descname"><span class="pre">float_to_byte</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/model/communication.html#float_to_byte"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.communication.float_to_byte" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.communication.float_to_byte'">¶</a></dt>
 <dd><p>Convert a floating-point value to a byte representation.</p>
 <p>This function takes a floating-point value within the range [-1, 1],
 normalizes it to the range [0, 1], and then scales it to the range [0, 255].</p>
@@ -192,7 +192,7 @@ normalizes it to the range [0, 1], and then scales it to the range [0, 255].</p>
 </dd></dl>
 </section>
 <section id="module-model.tank">
-<span id="model-tank-module"></span><h2>model.tank module<a class="headerlink" href="#module-model.tank" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#module-model.tank'"></a></h2>
+<span id="model-tank-module"></span><h2>model.tank module<a class="headerlink" href="#module-model.tank" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#module-model.tank'">¶</a></h2>
 <p>A module for saving the current values of the tank.</p>
 <p>Represent the part of the model in the MVC. Contains the
 current values needed for the tank to operate.</p>
@@ -203,14 +203,14 @@ tank.get_values()</p>
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="model.tank.Tank">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.tank.</span></span><span class="sig-name descname"><span class="pre">Tank</span></span><a class="reference internal" href="_modules/model/tank.html#Tank"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.tank.Tank" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank'"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.tank.</span></span><span class="sig-name descname"><span class="pre">Tank</span></span><a class="reference internal" href="_modules/model/tank.html#Tank"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.tank.Tank" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank'">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Values of the tank that are needed to operate it.</p>
 <p>All the values that are going to be communicated to
 the tank are stored here.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="model.tank.Tank.get_values">
-<span class="sig-name descname"><span class="pre">get_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/model/tank.html#Tank.get_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.tank.Tank.get_values" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.get_values'"></a></dt>
+<span class="sig-name descname"><span class="pre">get_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/model/tank.html#Tank.get_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.tank.Tank.get_values" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.get_values'">¶</a></dt>
 <dd><p>Get the current values of the tank.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -220,42 +220,42 @@ the tank are stored here.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="model.tank.Tank.light">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">light</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.light" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.light'"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">light</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.light" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.light'">¶</a></dt>
 <dd><p>Whether the light are turned on or off.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="model.tank.Tank.sound">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sound</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.sound" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.sound'"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sound</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.sound" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.sound'">¶</a></dt>
 <dd><p>Whether the sound signal is on or off.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="model.tank.Tank.speed1">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">speed1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.speed1" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.speed1'"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">speed1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.speed1" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.speed1'">¶</a></dt>
 <dd><p>X coordinate of the joystick representing speed and direction.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="model.tank.Tank.speed2">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">speed2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.speed2" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.speed2'"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">speed2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.speed2" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.speed2'">¶</a></dt>
 <dd><p>Y coordinate of the joystick representing speed and direction.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="model.tank.Tank.sth">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.sth" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.sth'"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.sth" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.sth'">¶</a></dt>
 <dd><p>Additional functionality that can be added later.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="model.tank.Tank.tower_x">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tower_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.tower_x" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.tower_x'"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tower_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.tower_x" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.tower_x'">¶</a></dt>
 <dd><p>X coordinate of the joystick representing the position of the tank tower.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="model.tank.Tank.tower_y">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tower_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.tower_y" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.tower_y'"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tower_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.tower_y" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.tower_y'">¶</a></dt>
 <dd><p>Y coordinate of the joystick representing the position of the tank tower.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="model.tank.Tank.water">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">water</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.water" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.water'"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">water</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#model.tank.Tank.water" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#model.tank.Tank.water'">¶</a></dt>
 <dd><p>Whether the water is being shot or not.</p>
 </dd></dl>
 </dd></dl>
@@ -306,8 +306,6 @@ the tank are stored here.</p>
 </div>
 </footer>
 </div>
-<script src="_static/jquery.js?v=5d32c60e"></script>
-<script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
 <script src="_static/documentation_options.js?v=5929fcd5"></script>
 <script src="_static/doctools.js?v=888ff710"></script>
 <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
