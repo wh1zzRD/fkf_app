@@ -30,6 +30,9 @@ jobs:
           make -C docs clean 
           make -C docs html
 
+      - name: Add exception for dubious ownership
+        run: git config --global --add safe.directory /github/workspace/docs/build/html
+
       - name: Init new repo in dist folder and commit generated files
         run: |
           cd docs/build/html/
