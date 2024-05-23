@@ -4,7 +4,7 @@ import os
 
 # Run pylint and save the output to a file
 with open('pylint.txt', 'w') as pylint_file:
-    process = subprocess.run(['pylint', 'controller', 'model', 'view', 'main.py'], stdout=subprocess.PIPE, text=True)
+    process = subprocess.run(['pylint', 'controller', 'model', 'view'], stdout=subprocess.PIPE, text=True)
     pylint_file.write(process.stdout)
 
 # Read the pylint output

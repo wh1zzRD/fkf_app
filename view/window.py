@@ -1,7 +1,12 @@
+"""Main Window Module.
+
+Contains the main application window class and related widgets.
+"""
+
 from functools import partial
 
 from PySide6 import QtCore
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QMainWindow, QPushButton, QWidget, QHBoxLayout, QVBoxLayout, QMessageBox
 
 from model.communication import SerialMessenger
@@ -11,9 +16,25 @@ from view.rotation_widget import RotationWidget
 
 
 class Window(QMainWindow):
-    update_previous_port = Signal(dict)
+    """Main Application Window.
+
+    Represents the main application window for the FKF App.
+    The View in the MVC. Manages all widgets and all GUI operations.
+
+    Attributes:
+        monitor: A QWidget representing the monitoring widget.
+        joystick: A QJoystick instance representing the joystick widget.
+        rotation_widget: A RotationWidget instance representing the rotation control widget.
+        button_water: A QPushButton for water control.
+        button_light: A QPushButton for light control.
+        button_sound: A QPushButton for sound control.
+        button_sth: A QPushButton for other function control.
+        selected_port: The selected port from the dialog for serial communication.
+        controls_functions: A dictionary mapping control signals to corresponding functions.
+    """
 
     def __init__(self) -> None:
+        """Initializes the window instance and all graphic layouts."""
         super().__init__()
         self.setWindowTitle("FKF App")
         self.setFixedSize(600, 400)
@@ -41,6 +62,11 @@ class Window(QMainWindow):
         }
 
     def handle_port_selection_dialog(self) -> str:
+        """Handle the port selection dialog.
+
+        Returns:
+            str: The selected port for serial communication.
+        """
         dlg = CustomDialog([""] + SerialMessenger.all_ports(), self)
         dlg.accepted.connect(partial(self.accepted_slot, dlg))
         dlg.rejected.connect(self.rejected_slot)
@@ -48,6 +74,12 @@ class Window(QMainWindow):
         return self.selected_port
 
     def critical_dialog(self, label: str, text: str) -> None:
+        """Display a critical dialog with the given label and text.
+
+        Args:
+            label (str): The label of the dialog.
+            text (str): The text to display in the dialog.
+        """
         QMessageBox.critical(
             self,
             label,
@@ -57,7 +89,7 @@ class Window(QMainWindow):
         )
 
     @QtCore.Slot(CustomDialog)
-    def accepted_slot(self, dlg):
+    def accepted_slot(self, dlg):  # pylint: disable=missing-function-docstring
         selected_option = dlg.get_selected_option()
         if selected_option:
             self.selected_port = selected_option
@@ -65,10 +97,11 @@ class Window(QMainWindow):
             self.critical_dialog("No Port Selected", "You did not select a port")
 
     @QtCore.Slot()
-    def rejected_slot(self):
+    def rejected_slot(self):  # pylint: disable=missing-function-docstring
         self.critical_dialog("No Port Selected", "You did not select a port")
 
     def _setup_layout(self) -> None:
+        """Set up the layout of the main window."""
         full_layout = QVBoxLayout()
 
         central_widget = QWidget()
@@ -79,6 +112,11 @@ class Window(QMainWindow):
         full_layout.addLayout(self._setup_controls_layout())
 
     def _setup_monitor_layout(self) -> QVBoxLayout:
+        """Set up the layout for the monitor widget.
+
+        Returns:
+            QVBoxLayout: the ready layout
+        """
         monitor_layout = QVBoxLayout()
         monitor_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
@@ -90,6 +128,11 @@ class Window(QMainWindow):
         return monitor_layout
 
     def _setup_controls_layout(self) -> QHBoxLayout:
+        """Set up the layout for the control widgets, e.g., buttons and joysticks.
+
+        Returns:
+            QHBoxLayout: the ready layout
+        """
         controls_layout = QHBoxLayout()
 
         controls_layout.addWidget(self.joystick)
@@ -100,6 +143,11 @@ class Window(QMainWindow):
         return controls_layout
 
     def _setup_buttons(self) -> QHBoxLayout:
+        """Set up the layout for the control buttons.
+
+        Returns:
+            QHBoxLayout: the ready layout
+        """
         button_grid = QHBoxLayout()
         button_data = [("Water", 60, 60), ("Light", 60, 60), ("Sound", 60, 60), ("Sth", 60, 60)]
 
@@ -115,6 +163,13 @@ class Window(QMainWindow):
         return button_grid
 
     def update_gui(self, element: str, x: float = 0, y: float = 0) -> None:
+        """Update the GUI based on the provided element and coordinates.
+
+        Args:
+            element (str): The element to update.
+            x (float): The x-coordinate.
+            y (float): The y-coordinate.
+        """
         if element in ("left_joystick", "right_joystick"):
             self.controls_functions[element](x, y)
         else:

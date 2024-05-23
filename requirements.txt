@@ -1,0 +1,4 @@
+PySide6~=6.7.0
+inputs~=0.5
+pyserial~=3.5
+pylint~=2.17.0
