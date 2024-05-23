@@ -6,8 +6,8 @@ import inputs
 from PySide6 import QtCore
 from PySide6.QtCore import Signal, QObject
 
-from Communication import SerialMessenger
-from Window import Window
+from model.Communication import SerialMessenger
+from view.Window import Window
 from gamepad_code import XboxController
 
 
@@ -47,7 +47,7 @@ class Controls(QObject):
     @classmethod
     def load_ports_from_json(cls):
         try:
-            with open("ports.json", "r") as f:
+            with open("../ports.json", "r") as f:
                 data = json.load(f)
             return data
         except FileNotFoundError:
@@ -57,7 +57,7 @@ class Controls(QObject):
     def save_ports_to_json(cls, port):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        with open("ports.json", "w") as f:
+        with open("../ports.json", "w") as f:
             json.dump({"port": port, "timestamp": timestamp}, f)
 
     def check_previous_ports(self):

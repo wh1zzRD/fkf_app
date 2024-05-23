@@ -8,6 +8,14 @@ class CustomDialog(QDialog):
 
         self.layout = QVBoxLayout(self)
 
+        self.message_label = QLabel(
+            "Connect ESP32 to your PC \n"
+            "and select the appropriate \n"
+            "port for serial communication.\n",
+            self
+        )
+        self.layout.addWidget(self.message_label)
+
         self.label = QLabel("Choose an option:", self)
         self.layout.addWidget(self.label)
 

@@ -2,10 +2,10 @@ from functools import partial
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QMainWindow, QPushButton, QWidget, QHBoxLayout, QVBoxLayout, QMessageBox
 
-from Communication import SerialMessenger
-from CustomDialog import CustomDialog
-from QJoystick import QJoystick
-from RotationWidget import RotationWidget
+from model.Communication import SerialMessenger
+from view.CustomDialog import CustomDialog
+from view.QJoystick import QJoystick
+from view.RotationWidget import RotationWidget
 
 
 class Window(QMainWindow):
