@@ -1,4 +1,6 @@
 from functools import partial
+
+from PySide6 import QtCore
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QMainWindow, QPushButton, QWidget, QHBoxLayout, QVBoxLayout, QMessageBox
 
@@ -11,7 +13,7 @@ from view.rotation_widget import RotationWidget
 class Window(QMainWindow):
     update_previous_port = Signal(dict)
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle("FKF App")
         self.setFixedSize(600, 400)
@@ -38,18 +40,14 @@ class Window(QMainWindow):
             "button_sth": self.button_sth.animateClick,
         }
 
-    def handle_port_selection_dialog(self):
+    def handle_port_selection_dialog(self) -> str:
         dlg = CustomDialog([""] + SerialMessenger.all_ports(), self)
         dlg.accepted.connect(partial(self.accepted_slot, dlg))
         dlg.rejected.connect(self.rejected_slot)
         dlg.exec()
         return self.selected_port
 
-    def select_port(self):
-        self.handle_port_selection_dialog()
-        return self.selected_port
-
-    def critical_dialog(self, label, text):
+    def critical_dialog(self, label: str, text: str) -> None:
         QMessageBox.critical(
             self,
             label,
@@ -58,6 +56,7 @@ class Window(QMainWindow):
             defaultButton=QMessageBox.Ok,
         )
 
+    @QtCore.Slot(CustomDialog)
     def accepted_slot(self, dlg):
         selected_option = dlg.get_selected_option()
         if selected_option:
@@ -65,10 +64,11 @@ class Window(QMainWindow):
         else:
             self.critical_dialog("No Port Selected", "You did not select a port")
 
+    @QtCore.Slot()
     def rejected_slot(self):
         self.critical_dialog("No Port Selected", "You did not select a port")
 
-    def _setup_layout(self):
+    def _setup_layout(self) -> None:
         full_layout = QVBoxLayout()
 
         central_widget = QWidget()
@@ -78,7 +78,7 @@ class Window(QMainWindow):
         full_layout.addLayout(self._setup_monitor_layout())
         full_layout.addLayout(self._setup_controls_layout())
 
-    def _setup_monitor_layout(self):
+    def _setup_monitor_layout(self) -> QVBoxLayout:
         monitor_layout = QVBoxLayout()
         monitor_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
@@ -89,7 +89,7 @@ class Window(QMainWindow):
 
         return monitor_layout
 
-    def _setup_controls_layout(self):
+    def _setup_controls_layout(self) -> QHBoxLayout:
         controls_layout = QHBoxLayout()
 
         controls_layout.addWidget(self.joystick)
@@ -99,7 +99,7 @@ class Window(QMainWindow):
 
         return controls_layout
 
-    def _setup_buttons(self):
+    def _setup_buttons(self) -> QHBoxLayout:
         button_grid = QHBoxLayout()
         button_data = [("Water", 60, 60), ("Light", 60, 60), ("Sound", 60, 60), ("Sth", 60, 60)]
 
@@ -114,7 +114,7 @@ class Window(QMainWindow):
 
         return button_grid
 
-    def update_gui(self, element, x, y):
+    def update_gui(self, element: str, x: float = 0, y: float = 0) -> None:
         if element in ("left_joystick", "right_joystick"):
             self.controls_functions[element](x, y)
         else:

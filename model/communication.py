@@ -1,4 +1,5 @@
 import time
+from typing import List
 
 import serial
 import serial.tools.list_ports
@@ -6,7 +7,7 @@ import serial.tools.list_ports
 from model.tank import Tank
 
 
-def float_to_byte(value):
+def float_to_byte(value) -> int:
     # Ensure the value is within the expected range
     if value < -1 or value > 1:
         raise ValueError("Input value should be in the range [-1, 1]")
@@ -19,7 +20,7 @@ def float_to_byte(value):
 
 
 class SerialMessenger:
-    def __init__(self, port, baud_rate=9600):
+    def __init__(self, port: str, baud_rate: int = 9600) -> None:
         self.port = port
         self.baud_rate = baud_rate
         self.ser = serial.Serial(port, baud_rate)
@@ -27,7 +28,7 @@ class SerialMessenger:
         self.tank = Tank()
 
     @staticmethod
-    def all_ports():
+    def all_ports() -> List[str]:
         all_ports = []
         ports = serial.tools.list_ports.comports()
         for port in ports:
@@ -35,11 +36,11 @@ class SerialMessenger:
 
         return all_ports
 
-    def close_serial(self):
+    def close_serial(self) -> None:
         if self.ser.is_open:
             self.ser.close()
 
-    def print_data(self):
+    def print_data(self) -> None:
         while True:
             tank_values = self.tank.get_values()
             print(tank_values)

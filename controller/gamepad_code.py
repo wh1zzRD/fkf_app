@@ -1,9 +1,10 @@
 import math
 import threading
 
-from inputs import get_gamepad
+from PySide6 import QtCore
+from PySide6.QtCore import QObject, Signal
 
-from PySide6.QtCore import QObject, Signal, Slot
+from inputs import get_gamepad
 
 
 class XboxController(QObject):
@@ -23,7 +24,7 @@ class XboxController(QObject):
     MAX_TRIG_VAL = math.pow(2, 8)
     MAX_JOY_VAL = math.pow(2, 15)
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
         self.left_joystick_y = 0
@@ -62,7 +63,7 @@ class XboxController(QObject):
         self.buttonXClicked.connect(self.toggle_variable_x_handler)
         self.buttonBClicked.connect(self.toggle_variable_b_handler)
 
-    @Slot()
+    @QtCore.Slot()
     def toggle_variable_x_handler(self):
         # Toggle the X variable between 0 and 1 and emit signal if it changes
         new_value = 1 - self.toggle_variable_x
@@ -70,7 +71,7 @@ class XboxController(QObject):
             self.toggle_variable_x = new_value
             self.xChanged.emit(self.toggle_variable_x)
 
-    @Slot()
+    @QtCore.Slot()
     def toggle_variable_b_handler(self):
         # Toggle the B variable between 0 and 1 and emit signal if it changes
         new_value = 1 - self.toggle_variable_b
@@ -78,7 +79,7 @@ class XboxController(QObject):
             self.toggle_variable_b = new_value
             self.bChanged.emit(self.toggle_variable_b)
 
-    def _monitor_controller(self):
+    def _monitor_controller(self) -> None:
         event_handlers = {
             'ABS_Y': self._handle_left_joystick_y,
             'ABS_X': self._handle_left_joystick_x,
@@ -114,70 +115,70 @@ class XboxController(QObject):
                 if abs(self.left_joystick_x) > 0.1 or abs(self.left_joystick_y) > 0.1:
                     self.leftJoystickPos.emit(self.left_joystick_x, self.left_joystick_y)
 
-    def _handle_left_joystick_y(self, event):
+    def _handle_left_joystick_y(self, event) -> None:
         self.left_joystick_y = event.state / self.MAX_JOY_VAL  # normalize between -1 and 1
 
-    def _handle_left_joystick_x(self, event):
+    def _handle_left_joystick_x(self, event) -> None:
         self.left_joystick_x = event.state / self.MAX_JOY_VAL  # normalize between -1 and 1
 
-    def _handle_right_joystick_y(self, event):
+    def _handle_right_joystick_y(self, event) -> None:
         self.right_joystick_y = event.state / self.MAX_JOY_VAL  # normalize between -1 and 1
 
-    def _handle_right_joystick_x(self, event):
+    def _handle_right_joystick_x(self, event) -> None:
         self.right_joystick_x = event.state / self.MAX_JOY_VAL  # normalize between -1 and 1
 
-    def _handle_left_trigger(self, event):
+    def _handle_left_trigger(self, event) -> None:
         self.left_trigger = event.state / self.MAX_TRIG_VAL  # normalize between 0 and 1
         self.l2_pressed.emit(self.left_trigger)
 
-    def _handle_right_trigger(self, event):
+    def _handle_right_trigger(self, event) -> None:
         self.right_trigger = event.state / self.MAX_TRIG_VAL  # normalize between 0 and 1
         self.r2_pressed.emit(self.right_trigger)
 
-    def _handle_left_bumper(self, event):
+    def _handle_left_bumper(self, event) -> None:
         self.left_bumper = event.state
 
-    def _handle_right_bumper(self, event):
+    def _handle_right_bumper(self, event) -> None:
         self.right_bumper = event.state
 
-    def _handle_button_a(self, event):
+    def _handle_button_a(self, event) -> None:
         self.a = event.state
         self.buttonAClicked.emit()
 
-    def _handle_button_y(self, event):
+    def _handle_button_y(self, event) -> None:
         self.y = event.state  # previously switched with X
         self.buttonYClicked.emit()
 
-    def _handle_button_x(self, event):
+    def _handle_button_x(self, event) -> None:
         self.x = event.state  # previously switched with Y
         if self.x == 1:  # Only emit when the button is pressed down
             self.buttonXClicked.emit()
 
-    def _handle_button_b(self, event):
+    def _handle_button_b(self, event) -> None:
         self.b = event.state
         if self.b == 1:  # Only emit when the button is pressed down
             self.buttonBClicked.emit()
 
-    def _handle_left_thumb(self, event):
+    def _handle_left_thumb(self, event) -> None:
         self.left_thumb = event.state
 
-    def _handle_right_thumb(self, event):
+    def _handle_right_thumb(self, event) -> None:
         self.right_thumb = event.state
 
-    def _handle_back(self, event):
+    def _handle_back(self, event) -> None:
         self.back = event.state
 
-    def _handle_start(self, event):
+    def _handle_start(self, event) -> None:
         self.start = event.state
 
-    def _handle_left_d_pad(self, event):
+    def _handle_left_d_pad(self, event) -> None:
         self.left_d_pad = event.state
 
-    def _handle_right_d_pad(self, event):
+    def _handle_right_d_pad(self, event) -> None:
         self.right_d_pad = event.state
 
-    def _handle_up_d_pad(self, event):
+    def _handle_up_d_pad(self, event) -> None:
         self.up_d_pad = event.state
 
-    def _handle_down_d_pad(self, event):
+    def _handle_down_d_pad(self, event) -> None:
         self.down_d_pad = event.state

@@ -1,8 +1,10 @@
-from PySide6.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout, QLabel, QComboBox
+from typing import List, Optional
+
+from PySide6.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout, QLabel, QComboBox, QMainWindow
 
 
 class CustomDialog(QDialog):
-    def __init__(self, options, parent=None):
+    def __init__(self, options: List[str], parent: Optional[QMainWindow] = None) -> None:
         super().__init__(parent)
         self.setWindowTitle("Select an Option")
 
@@ -31,5 +33,5 @@ class CustomDialog(QDialog):
 
         self.layout.addWidget(self.button_box)
 
-    def get_selected_option(self):
+    def get_selected_option(self) -> str:
         return self.combo_box.currentText()

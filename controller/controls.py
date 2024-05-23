@@ -15,7 +15,7 @@ from .gamepad_code import XboxController
 class Controls(QObject):
     second_signal = Signal()
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
         self.window = Window()
@@ -46,7 +46,7 @@ class Controls(QObject):
         self.send.start()
 
     @classmethod
-    def load_ports_from_json(cls):
+    def load_ports_from_json(cls) -> dict:
         try:
             with open("../ports.json", "r", encoding="utf-8") as f:
                 data = json.load(f)
@@ -55,13 +55,13 @@ class Controls(QObject):
             return {}
 
     @classmethod
-    def save_ports_to_json(cls, port):
+    def save_ports_to_json(cls, port: str) -> None:
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         with open("../ports.json", "w", encoding="utf-8") as f:
             json.dump({"port": port, "timestamp": timestamp}, f)
 
-    def check_previous_ports(self):
+    def check_previous_ports(self) -> str:
         ports_data = self.load_ports_from_json()
 
         if "timestamp" in ports_data and "port" in ports_data:
@@ -73,41 +73,41 @@ class Controls(QObject):
         return ""
 
     @QtCore.Slot(float)
-    def l2_pressed(self, r):
+    def l2_pressed(self, r: float):
         if r > 0.1:
             self.comms.tank.sound = 1
         else:
             self.comms.tank.sound = 0
 
-        self.window.update_gui("button_sound", 0, 0)
+        self.window.update_gui("button_sound")
 
     @QtCore.Slot(float)
-    def r2_pressed(self, r):
+    def r2_pressed(self, r: float):
         if r > 0.1:
             self.comms.tank.water = 1
         else:
             self.comms.tank.water = 0
 
-        self.window.update_gui("button_water", 0, 0)
+        self.window.update_gui("button_water")
 
     @QtCore.Slot(float, float)
-    def left_joystick_move_slot(self, x, y):
+    def left_joystick_move_slot(self, x: float, y: float):
         self.comms.tank.speed1 = x
         self.comms.tank.speed2 = y
         self.window.update_gui("left_joystick", x, y)
 
     @QtCore.Slot(float, float)
-    def right_joystick_move_slot(self, x, y):
+    def right_joystick_move_slot(self, x: float, y: float):
         self.comms.tank.tower_x = x
         self.comms.tank.tower_y = y
         self.window.update_gui("right_joystick", x, y)
 
     @QtCore.Slot(int)
-    def b_clicked(self, val):
+    def b_clicked(self, val: int):
         self.comms.tank.sth = val
-        self.window.update_gui("button_sth", 0, 0)
+        self.window.update_gui("button_sth")
 
     @QtCore.Slot(int)
-    def x_clicked(self, val):
+    def x_clicked(self, val: int):
         self.comms.tank.light = val
-        self.window.update_gui("button_light", 0, 0)
+        self.window.update_gui("button_light")
