@@ -38,8 +38,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Build HTML
-        env:
-          PYTHONPATH: ${{ github.workspace }}/controller/
         run: | 
           cd docs/
           make html

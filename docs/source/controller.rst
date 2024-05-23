@@ -2,7 +2,7 @@ Controller Package
 ==================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
 controller.controls module
 --------------------------
@@ -19,4 +19,3 @@ controller.gamepad module
    :members:
    :undoc-members:
    :show-inheritance:
-
