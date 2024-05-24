@@ -31,7 +31,7 @@ jobs:
           pip install -r requirements.txt
           apt-get update && apt-get install -y python3-opencv
           pip install opencv-python
-          pip install -e .
+          pip list
 #          pip install opencv-python-headless
 #          apt-get update && apt-get install libgl1
 
