@@ -37,10 +37,7 @@ jobs:
 
       - name: Build HTML
         run: | 
-          source venv/bin/activate
-          cd docs/
-          ls -la
-          make html
+          sphinx-build -b html docs/source docs/build/html
 
       - name: Run ghp-import
         run: | 
