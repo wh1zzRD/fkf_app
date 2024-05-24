@@ -28,7 +28,6 @@ jobs:
 
       - name: Install dependencies
         run: | 
-          source venv/bin/activate
           pip install -r requirements.txt
           pip install opencv-python-headless
 
