@@ -38,6 +38,14 @@ class Controls(QObject):
         gamepad: An instance of XboxController for handling gamepad inputs.
         send: A threading.Thread for handling background serial communication.
     """
+
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls, *args, **kwargs)
+        return cls._instance
+
     def __init__(self) -> None:
         """Initializes the Controls class, setting up the window, ports, gamepad, and communication.
         Connects the signals with the according slots.
