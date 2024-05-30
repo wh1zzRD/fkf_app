@@ -15,14 +15,10 @@
 // Structure example to receive data
 // Must match the sender structure
 typedef struct struct_message {
-  byte speed1;
-  byte speed2;
-  byte tower1;
-  byte tower2;
-  byte water;
-  byte sound;
-  byte light;
-  byte something;
+  int left;
+  int right;
+  bool light;
+  bool water;
 } struct_message;
 
 // Create a struct_message called myData
@@ -36,22 +32,10 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   memcpy(&myData, incomingData, sizeof(myData));
   Serial.print("Bytes received: ");
   Serial.println(len);
-  Serial.print("Tower 1: ");
-  Serial.println(myData.tower1);
-  Serial.print("Tower 2: ");
-  Serial.println(myData.tower2);
-  Serial.print("Speed 1: ");
-  Serial.println(myData.speed1);
-  Serial.print("Speed 2: ");
-  Serial.println(myData.speed2);
-  Serial.print("Water: ");
-  Serial.println(myData.water);
-  Serial.print("Sound: ");
-  Serial.println(myData.sound);
-  Serial.print("Light: ");
+  Serial.println(myData.left);
+  Serial.println(myData.right);
   Serial.println(myData.light);
-  Serial.print("Something: ");
-  Serial.println(myData.something);
+  Serial.println(myData.water);
 
   if (myData.light != 0) { // Check the value at index 6
     digitalWrite(ledPin, HIGH); // Turn the LED on
