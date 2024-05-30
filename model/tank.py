@@ -20,41 +20,37 @@ class Tank:
     """
     def __init__(self) -> None:
         """Initializes the instance."""
-        self._speed1 = 0
-        self._speed2 = 0
+        self._left = 0
+        self._right = 0
         self._tower_x = 0
         self._tower_y = 0
         self._light = 0
         self._water = 0
-        self._sound = 0
-        self._sth = 0
 
-    def get_values(self) -> List[int]:
+    def get_values(self) -> dict:
         """Get the current values of the tank.
 
         Returns:
             A list of integers representing the current values of the tank.
         """
-        return [
-            self._speed1,
-            self._speed2,
-            self._tower_x,
-            self._tower_y,
-            self._light,
-            self._water,
-            self._sound,
-            self._sth
-        ]
+        return {
+            "left_motor": self._left,
+            "right_motor": self._right,
+            "tower_x": self.tower_x,
+            "tower_y": self._tower_y,
+            "light": self._light,
+            "water": self._water
+        }
 
     @property
-    def speed1(self) -> int:
+    def left(self) -> int:
         """X coordinate of the joystick representing speed and direction."""
-        return self._speed1
+        return self._left
 
     @property
-    def speed2(self) -> int:
+    def right(self) -> int:
         """Y coordinate of the joystick representing speed and direction."""
-        return self._speed2
+        return self._right
 
     @property
     def tower_x(self) -> int:
@@ -76,18 +72,8 @@ class Tank:
         """Whether the water is being shot or not."""
         return self._water
 
-    @property
-    def sound(self) -> int:
-        """Whether the sound signal is on or off."""
-        return self._sound
-
-    @property
-    def sth(self) -> int:
-        """Additional functionality that can be added later."""
-        return self._sth
-
-    @speed1.setter
-    def speed1(self, value: float) -> None:
+    @left.setter
+    def left(self, value: float) -> None:
         """Set the speed1 property.
 
         Args:
@@ -97,12 +83,12 @@ class Tank:
             ValueError: If the value is not in the range [-1, 1].
         """
         if -1 <= value <= 1:
-            self._speed1 = value
+            self._left = value
         else:
             raise ValueError("Value of the speed should be in the [-1; 1] interval")
 
-    @speed2.setter
-    def speed2(self, value: float) -> None:
+    @right.setter
+    def right(self, value: float) -> None:
         """Set the speed2 property.
 
         Args:
@@ -112,7 +98,7 @@ class Tank:
             ValueError: If the value is not in the range [-1, 1].
         """
         if -1 <= value <= 1:
-            self._speed2 = value
+            self._right = value
         else:
             raise ValueError("Value of the speed should be in the [-1; 1] interval")
 
@@ -173,35 +159,5 @@ class Tank:
         """
         if value in (0, 1):
             self._water = value
-        else:
-            raise ValueError("Value should be 0 or 1")
-
-    @sound.setter
-    def sound(self, value: int) -> None:
-        """Set the sound property.
-
-        Args:
-            value (int): The value to set.
-
-        Raises:
-            ValueError: If the value is not 0 or 1.
-        """
-        if value in (0, 1):
-            self._sound = value
-        else:
-            raise ValueError("Value should be 0 or 1")
-
-    @sth.setter
-    def sth(self, value: int) -> None:
-        """Set the additional property.
-
-        Args:
-            value (int): The value to set.
-
-        Raises:
-            ValueError: If the value is not 0 or 1.
-        """
-        if value in (0, 1):
-            self._sth = value
         else:
             raise ValueError("Value should be 0 or 1")

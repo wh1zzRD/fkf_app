@@ -27,8 +27,6 @@ class Window(QMainWindow):
         rotation_widget: A RotationWidget instance representing the rotation control widget.
         button_water: A QPushButton for water control.
         button_light: A QPushButton for light control.
-        button_sound: A QPushButton for sound control.
-        button_sth: A QPushButton for other function control.
         selected_port: The selected port from the dialog for serial communication.
         controls_functions: A dictionary mapping control signals to corresponding functions.
     """
@@ -45,8 +43,6 @@ class Window(QMainWindow):
 
         self.button_water = QPushButton()
         self.button_light = QPushButton()
-        self.button_sound = QPushButton()
-        self.button_sth = QPushButton()
 
         self._setup_layout()
 
@@ -56,9 +52,7 @@ class Window(QMainWindow):
             "right_joystick": self.rotation_widget.set_joystick_position,
             "left_joystick": self.joystick.set_joystick_position,
             "button_water": self.button_water.animateClick,
-            "button_light": self.button_light.animateClick,
-            "button_sound": self.button_sound.animateClick,
-            "button_sth": self.button_sth.animateClick,
+            "button_light": self.button_light.animateClick
         }
 
     def handle_port_selection_dialog(self) -> str:
@@ -149,7 +143,7 @@ class Window(QMainWindow):
             QHBoxLayout: the ready layout
         """
         button_grid = QHBoxLayout()
-        button_data = [("Water", 60, 60), ("Light", 60, 60), ("Sound", 60, 60), ("Sth", 60, 60)]
+        button_data = [("Water", 60, 60), ("Light", 60, 60)]
 
         # Create buttons and add them to the layout
         for button_name, width, height in button_data:

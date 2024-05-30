@@ -137,6 +137,8 @@ class XboxController(QObject):
                     self.rightJoystickPos.emit(self._right_joystick_x, self._right_joystick_y)
                 if abs(self._left_joystick_x) > 0.1 or abs(self._left_joystick_y) > 0.1:
                     self.leftJoystickPos.emit(self._left_joystick_x, self._left_joystick_y)
+                else:
+                    self.leftJoystickPos.emit(0, 0)
 
     def _handle_left_joystick_y(self, event) -> None:
         self._left_joystick_y = event.state / self.MAX_JOY_VAL  # normalize between -1 and 1

@@ -41,6 +41,12 @@ def float_to_byte(value: float) -> int:
     return byte_value
 
 
+def float_to_int_255(value):
+    if value < 0 or value > 1:
+        raise ValueError("Input value must be in the range [0, 1]")
+    return int(round(value * 255))
+
+
 class SerialMessenger:
     """Communication point between program and physical tank.
 
@@ -95,19 +101,22 @@ class SerialMessenger:
         """
         while True:
             tank_values = self.tank.get_values()
-            print(tank_values)
-            byte_msg = [
-                float_to_byte(tank_values[0]),
-                float_to_byte(tank_values[1]),
-                float_to_byte(tank_values[2]),
-                float_to_byte(tank_values[3]),
-                tank_values[4],
-                tank_values[5],
-                tank_values[6],
-                tank_values[7]
-            ]
+            print(tank_values.values())
+            byte_msg = []
+
+            left_sign = 0 if tank_values["left_motor"] < 0 else 1
+            right_sign = 0 if tank_values["right_motor"] < 0 else 1
+
+            byte_msg.append(left_sign)
+            byte_msg.append(float_to_int_255(abs(tank_values["left_motor"])))
+
+            byte_msg.append(right_sign)
+            byte_msg.append(float_to_int_255(abs(tank_values["right_motor"])))
+
+            byte_msg.append(tank_values["light"])
+            byte_msg.append(tank_values["water"])
             print(byte_msg)
             byte_data = bytes(byte_msg)
             # Send the byte data over serial
             self.ser.write(byte_data)
-            time.sleep(1)
+            time.sleep(0.1)

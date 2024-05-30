@@ -13,6 +13,7 @@ Typical usage example:
 """
 
 import json
+import math
 import sys
 import threading
 from datetime import datetime, timedelta
@@ -24,6 +25,22 @@ from PySide6.QtCore import QObject
 from model.communication import SerialMessenger
 from view.window import Window
 from .gamepad import XboxController
+
+
+def steering(x, y):
+    # Calculate initial motor speeds
+    left_speed = y + x
+    right_speed = y - x
+
+    # Find the maximum absolute value among the speeds
+    max_speed = max(abs(left_speed), abs(right_speed))
+
+    # Normalize the speeds if necessary
+    if max_speed > 1:
+        left_speed /= max_speed
+        right_speed /= max_speed
+
+    return left_speed, right_speed
 
 
 class Controls(QObject):
@@ -71,9 +88,9 @@ class Controls(QObject):
         self.gamepad.leftJoystickPos.connect(self.left_joystick_move_slot)
         self.gamepad.rightJoystickPos.connect(self.right_joystick_move_slot)
 
-        self.gamepad.bChanged.connect(self.b_clicked)
+        # self.gamepad.bChanged.connect(self.b_clicked)
         self.gamepad.xChanged.connect(self.x_clicked)
-        self.gamepad.l2_pressed.connect(self.l2_pressed)
+        # self.gamepad.l2_pressed.connect(self.l2_pressed)
         self.gamepad.r2_pressed.connect(self.r2_pressed)
 
         self.send = threading.Thread(target=self.comms.print_data, daemon=True)
@@ -123,14 +140,14 @@ class Controls(QObject):
 
         return ""
 
-    @QtCore.Slot(float)
-    def l2_pressed(self, r: float):  # pylint: disable=missing-function-docstring
-        if r > 0.1:
-            self.comms.tank.sound = 1
-        else:
-            self.comms.tank.sound = 0
-
-        self.window.update_gui("button_sound")
+    # @QtCore.Slot(float)
+    # def l2_pressed(self, r: float):  # pylint: disable=missing-function-docstring
+    #     if r > 0.1:
+    #         self.comms.tank.sound = 1
+    #     else:
+    #         self.comms.tank.sound = 0
+    #
+    #     self.window.update_gui("button_sound")
 
     @QtCore.Slot(float)
     def r2_pressed(self, r: float):  # pylint: disable=missing-function-docstring
@@ -143,8 +160,9 @@ class Controls(QObject):
 
     @QtCore.Slot(float, float)
     def left_joystick_move_slot(self, x: float, y: float):  # pylint: disable=missing-function-docstring
-        self.comms.tank.speed1 = x
-        self.comms.tank.speed2 = y
+        left, right = steering(x, y)
+        self.comms.tank.left = left
+        self.comms.tank.right = right
         self.window.update_gui("left_joystick", x, y)
 
     @QtCore.Slot(float, float)
@@ -153,10 +171,10 @@ class Controls(QObject):
         self.comms.tank.tower_y = y
         self.window.update_gui("right_joystick", x, y)
 
-    @QtCore.Slot(int)
-    def b_clicked(self, val: int):  # pylint: disable=missing-function-docstring
-        self.comms.tank.sth = val
-        self.window.update_gui("button_sth")
+    # @QtCore.Slot(int)
+    # def b_clicked(self, val: int):  # pylint: disable=missing-function-docstring
+    #     self.comms.tank.sth = val
+    #     self.window.update_gui("button_sth")
 
     @QtCore.Slot(int)
     def x_clicked(self, val: int):  # pylint: disable=missing-function-docstring
