@@ -22,14 +22,10 @@ const int ledPin = 32; // LED connected to digital pin 32
 // Structure example to send data
 // Must match the receiver structure
 typedef struct struct_message {
-  byte speed1;
-  byte speed2;
-  byte tower1;
-  byte tower2;
-  byte water;
-  byte sound;
-  byte light;
-  byte something;
+  int left;
+  int right;
+  bool light;
+  bool water;
 } struct_message;
 
 // Create a struct_message called myData
@@ -77,28 +73,44 @@ void setup() {
  
 void loop() {
    // Create an array to hold the received bytes
-  if (Serial.available() >= 8) {
+  if (Serial.available() >= 6) {
     // Read the 8 bytes into the array
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 6; i++) {
         receivedData[i] = Serial.read();
     }
   }
 
+  int left = receivedData[1];
+  if (!receivedData[0]) {
+    left *= -1;
+  }
+
+  int right = receivedData[3];
+  if (!receivedData[2]) {
+    right *= -1;
+  }
+
+  bool light = receivedData[4];
+  bool water = receivedData[5];
+
+  myData.left = left;
+  myData.right = right;
+  myData.light = light;
+  myData.water = water;
+
   // Set values to send
   // strcpy(myData.a, "THIS IS A CHAR");
-  myData.speed1 = receivedData[0];
-  myData.speed2 = receivedData[1];
-  myData.tower1 = receivedData[2];
-  myData.tower2 = receivedData[3];
-  myData.light = receivedData[4];
-  myData.water = receivedData[5];
-  myData.sound = receivedData[6];
-  myData.something = receivedData[7];
+  // myData.speed1 = receivedData[0];
+  // myData.speed2 = receivedData[1];
+  // myData.tower1 = receivedData[2];
+  // myData.tower2 = receivedData[3];
+  // myData.light = receivedData[4];
+  // myData.water = receivedData[5];
   // myData.b = random(1,20);
   // myData.c = 1.2;
   // myData.d = false;
 
-  if (myData.light != 0) { // Check the value at index 6
+  if (myData.water) { // Check the value at index 6
     digitalWrite(ledPin, HIGH); // Turn the LED on
   } else {
     digitalWrite(ledPin, LOW); // Turn the LED off
